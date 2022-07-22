@@ -31,9 +31,10 @@ const res = await fetch(`https://livepeer.studio/api/asset`, {
     <ul className={ styles.grid }>
     { assets.data?.map((asset) => {
             <li className={ styles.card } key={asset.id}>
-              <h2> { asset.name }</h2>
+              <h2> { asset.name } </h2>
               <p>Status: { asset.status.phase}</p>
-            <p>{ asset.playbackUrl}</p>
+              <p>PlaybackID: { asset.playbackId}</p>
+              <p>PlaybackURL:{ asset.playbackUrl}</p>
           </li>
           })}
       </ul>
