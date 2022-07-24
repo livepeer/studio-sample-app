@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link';
 import styles from "../../styles/Home.module.css";
 
 export async function getServerSideProps() {
@@ -18,22 +19,35 @@ export async function getServerSideProps() {
   };
 }
 
-export default function ListAssets({ assets }) {
+
+
+export default function ListAssets({assets}) {
   console.log(assets);
+
+
+
   return (
     <main className = { styles.main } >
-      <h1 className={styles.title}>Available Assets</h1>
+      <h1 className={ styles.title }>All Assets</h1>
+      
+        <button>Get Ready Assets</button>
+        <button>Get Assets By Id</button>
 
       <ul className={styles.grid}>
         {assets.map((asset) => (
-          <div className={styles.card} key={asset.id}>
+          <div className={ styles.card } key={ asset.id }>
+            <Link href={ `/videoAssets/${asset.id}` }>
+              <a>
+                <img />
             <h2> {asset.name} </h2>
-            <p>Status: {asset.status.phase}</p>
-            <p>PlaybackID: {asset.playbackId}</p>
-            <p>PlaybackURL:{asset.playbackUrl}</p>
+                <p>Status: { asset.status.phase }</p>
+              </a>
+            </Link>
+            
           </div>
         ))}
       </ul>
+
     </ main>
       );
 }
