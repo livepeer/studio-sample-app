@@ -1,6 +1,8 @@
 import React from "react";
+import Image from 'next/image';
 import Link from 'next/link';
-import styles from "../../styles/Home.module.css";
+import logo from '../../public/studioLogo.png';
+import styles from "../../styles/Assets.module.css";
 
 export async function getServerSideProps() {
   const res = await fetch(`https://livepeer.studio/api/asset`, {
@@ -38,7 +40,12 @@ export default function ListAssets({assets}) {
           <div className={ styles.card } key={ asset.id }>
             <Link href={ `/videoAssets/${asset.id}` }>
               <a>
-                <img />
+              <Image 
+            src= {logo}
+            alt="Livepeer Studio Logo"
+            width="256"
+            height="256"
+          />
             <h2> {asset.name} </h2>
                 <p>Status: { asset.status.phase }</p>
               </a>
