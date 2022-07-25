@@ -5,8 +5,8 @@ export default function Navbar() {
   return (
     <div className = { styles.navbar }>
       <div className={ styles.links } >
-        <Link href="/" >Home</Link>
-        <Link href="onDemand">On Demand</Link>
+        <Link href="/">🏠 Home</Link>
+          <Link href="onDemand">📼 On Demand</Link>
       </div>
     </div>
   )
