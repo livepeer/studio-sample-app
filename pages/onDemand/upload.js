@@ -2,6 +2,18 @@ import {useState} from 'react'
 import Link from 'next/link';
 
 
+export async function getServerSideProps() {
+  const res = await fetch(`https://livepeer.studio/api/asset/`, {
+    method: "POST",
+    mode: 'cors',
+    headers: {
+      Authorization: `Bearer ${process.env.API_KEY}`,
+      "Content-Type": "application/json",
+    },
+  });
+  const asset = await res.json();
+}
+
 export default function OnDemand() {
 
 // Getting the asset name and URL from the user
