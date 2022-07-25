@@ -43,10 +43,6 @@ export async function getStaticProps({params}) {
 
 export default function Details({assets}) {
   const { query: { id, }, } = useRouter();
-  // const [allAssets, setAllAssets] = useState(null);
-
-
-
   
   return (
     <div>
@@ -60,6 +56,7 @@ export default function Details({assets}) {
           />
           <h2> { assets.name } </h2>
           <p>Status: { assets.status.phase }</p>
+          <p>Id: { assets.id }</p>
           <p>Playback Id: { assets.playbackId}</p>
           <p>PlaybackURL:{ assets.playbackUrl }</p>
           <a href={ assets.downloadUrl }
