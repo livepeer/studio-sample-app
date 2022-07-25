@@ -5,42 +5,33 @@ import Link from 'next/link';
 import logo from '../../public/studioLogo.png';
 import styles from "../../styles/Assets.module.css";
 
-// export async function getServerSideProps() {
-//   const res = await fetch(`https://livepeer.studio/api/asset/`, {
-//     method: "GET",
-//     headers: {
-//       Authorization: `Bearer ${process.env.API_KEY}`,
-//       "Content-Type": "application/json",
-//     },
-//   });
-//   const asset = await res.json();
+export async function getStaticProps() {
+  const res = await fetch(`https://livepeer.studio/api/asset/`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${process.env.API_KEY}`,
+      "Content-Type": "application/json",
+    },
+  });
+  const asset = await res.json();
 
 
-//   return {
-//     props: {
-//       assets: asset,
-//     },
-//   };
-// }
+  return {
+    props: {
+      assets: asset,
+    },
+  };
+}
 
 
 
 export default function ListAssetByID() {
 
   const [assetId, setAssetId] = useState();
-  // const {asset} = router.assetId
 
   async function searchAsset(e) {
     e.preventDefault();
-    let res = await fetch(`https://livepeer.studio/api/asset/${assetId}`, {
-      method: "GET",
-    headers: {
-      Authorization: `Bearer ${process.env.API_KEY}`,
-      "Content-Type": "application/json",
-    },
-  });
-    const asset = await res.json();
-    console.log(asset);
+  
     setAssetId(e.target.value)
   }
 
@@ -55,7 +46,7 @@ export default function ListAssetByID() {
       </form>
        
             
-        
+
 
     </ main>
       );
