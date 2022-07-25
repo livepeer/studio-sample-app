@@ -13,20 +13,16 @@ export async function getServerSideProps() {
     },
   });
   const data = await res.json();
-  let readyAsset = [];
-  const ready = async () => {
-    await data.map(asset => {
-      if (asset.status.phase === "ready") {
-        readyAsset.push(asset)
-      }
-      return;
-    })
+  let readyAssets = []
+  for (const asset of data) {
+    if (asset.status === "ready") {
+      readyAssets.push(asset)
+    }
   }
-  // ready()
-
+  
   return {
     props: {
-      assets: readyAsset,
+      assets: readyAssets,
     },
   };
 }
@@ -54,7 +50,6 @@ export default function ListAssets({ assets }) {
             height="256"
           />
             <h2> {asset.name} </h2>
-                {/* <p>Status: { asset.status.phase }</p> */}
               </a>
             </Link>
             
