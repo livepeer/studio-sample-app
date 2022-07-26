@@ -12,17 +12,17 @@ export async function getServerSideProps() {
       "Content-Type": "application/json",
     },
   });
-  const data = await res.json();
-  let readyAssets = []
-  for (const asset of data) {
-    if (asset.status === "ready") {
-      readyAssets.push(asset)
-    }
-  }
+  const data= await res.json();
+  // let readyAssets = []
+  // for (const asset of data) {
+  //   if (asset.status === "ready") {
+  //     readyAssets.push(asset)
+  //   }
+  // }
   
   return {
     props: {
-      assets: readyAssets,
+      assets: data,
     },
   };
 }
