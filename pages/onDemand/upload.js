@@ -12,14 +12,14 @@ export default function OnDemand() {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    const {name, url} = formState
+    const { name, url } = formState;
     const res = await fetch(`https://livepeer.studio/api/asset/import`, {
       method: "POST",
       mode: 'no-cors',
       headers: {
-        'Authorization': `Bearer ${process.env.API_KEY}`,
+        'Authorization': `Bearer ${process.env.API_KEY_FULL_CORS}`,
         'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': '*',
         // 'Access-Control-Allow-Credentials': 'true',
         // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
       },
@@ -28,10 +28,12 @@ export default function OnDemand() {
         url
       })
     })
-    // const data = await res.json();
-    console.log(res);
+      .then(res => res.json())
+      .then((data) => {
+      console.log(data)
+      })
+    .catch(error => console.log(error))
   }
- 
 
   return (
     <div>
