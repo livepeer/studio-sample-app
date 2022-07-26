@@ -5,43 +5,52 @@ import Link from 'next/link';
 export default function OnDemand() {
 
 // Getting the asset name and URL from the user
-  const [assetName, setAssetName] = useState('');
-  const [url, setURL] = useState('');
+  const [formState, setFormState] = useState({
+    name: '',
+    url: ''
+  });
 
-// Function to update asset name and URL from the user
-  const getName = (e) => {
-    e.preventDefault()
-    setAssetName(e.target.value)
-    console.log(assetName);
+  const submitForm = async (e) => {
+    e.preventDefault();
+    const {name, url} = formState
+    const res = await fetch(`https://livepeer.studio/api/asset/import`, {
+      method: "POST",
+      mode: 'no-cors',
+      headers: {
+        'Authorization': `Bearer ${process.env.API_KEY}`,
+        'Content-Type': 'application/json',
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Credentials': 'true',
+        // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
+      },
+      body: JSON.stringify({
+        name,
+        url
+      })
+    })
+    // const data = await res.json();
+    console.log(res);
   }
-
-  const getURL = (e) => {
-    e.preventDefault()
-    setURL(e.target.value)
-    console.log(url);
-  }
-
-
  
 
   return (
     <div>
       <h1>Upload a video</h1>
-      <form action="/api/uploadForm" method="post">
+      <form  onSubmit={submitForm}  method="POST">
         <label htmlFor="asset">Asset Name</label>
         <input type="text"
-          value={ assetName }
+          value={ formState.name }
           name="assetName"
           required
-          onChange={ getName }
+          onChange={ (e) => setFormState({...formState, name: e.target.value}) }
         />
         <label htmlFor="url">Asset URL </label>
         <input type="url"
-          value={ url }
+          value={ formState.url }
           name="url"
           required
           pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
-          onChange={ getURL }
+          onChange={ (e) => setFormState({...formState, url: e.target.value}) }
         />
         <button type="submit">Upload Asset</button>
         </form>
