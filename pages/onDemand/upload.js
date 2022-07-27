@@ -1,67 +1,70 @@
-import {useState} from 'react'
-import Link from 'next/link';
-
+import { useState } from "react";
+import Link from "next/link";
+import styles from "../../styles/Form.module.css";
 
 export default function OnDemand() {
-
-// Getting the asset name and URL from the user
+  // Getting the asset name and URL from the user
   const [formState, setFormState] = useState({
-    name: '',
-    url: ''
+    name: "",
+    url: "",
   });
 
   const submitForm = async (e) => {
     e.preventDefault();
     const { name, url } = formState;
-    const res = await fetch(`https://livepeer.studio/api/asset/import`, {
+    await fetch(`https://livepeer.studio/api/asset/import`, {
       method: "POST",
-      mode: 'no-cors',
       headers: {
-        'Authorization': `Bearer ${process.env.API_KEY_FULL_CORS}`,
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        Authorization: `Bearer ${process.env.API_KEY_FULL_CORS}`,
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
         // 'Access-Control-Allow-Credentials': 'true',
         // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
       },
       body: JSON.stringify({
         name,
-        url
-      })
+        url,
+      }),
     })
-      .then(res => res.json())
-      .then((data) => {
-      console.log(data)
-      })
-    .catch(error => console.log(error))
-  }
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+
+    setFormState({
+      name: "",
+      url: "",
+    });
+  };
 
   return (
-    <div>
-      <h1>Upload a video</h1>
-      <form  onSubmit={submitForm}  method="POST">
+    <div className={styles.main}>
+      <h1 className={styles.title}>Uploading with URL</h1>
+      <form onSubmit={submitForm} method="POST" className={styles.card}>
         <label htmlFor="asset">Asset Name</label>
-        <input type="text"
-          value={ formState.name }
+        <input
+          type="text"
+          value={formState.name}
           name="assetName"
           required
-          onChange={ (e) => setFormState({...formState, name: e.target.value}) }
+          onChange={(e) => setFormState({ ...formState, name: e.target.value })}
         />
         <label htmlFor="url">Asset URL </label>
-        <input type="url"
-          value={ formState.url }
+        <input
+          type="url"
+          value={formState.url}
           name="url"
           required
           pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
-          onChange={ (e) => setFormState({...formState, url: e.target.value}) }
+          onChange={(e) => setFormState({ ...formState, url: e.target.value })}
         />
         <button type="submit">Upload Asset</button>
-        </form>
+      </form>
 
       <h3>
-        <Link href='/'>
+        <Link href="/">
           <a>&larr; Back to Home Page </a>
         </Link>
       </h3>
-</div>
- )     
+    </div>
+  );
 }
