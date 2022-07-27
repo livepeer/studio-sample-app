@@ -4,7 +4,7 @@
 //   fetch(`https://livepeer.studio/api/asset/import`, {
 //       method: "POST",
 //       headers: {
-//         'Authorization': `Bearer 3cb6d9f6-d011-49fc-858f-c4c1127083d7`,
+//         'Authorization': `Bearer ${process.env.API_KEY_FULL_CORS}`,
 //         'Content-Type': 'application/json',
 //         'Access-Control-Allow-Origin': '*',
 //         // 'Access-Control-Allow-Credentials': 'true',

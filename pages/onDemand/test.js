@@ -3,32 +3,32 @@ import React from 'react'
 
 const LoadDataViaApi = (props) => {
   const [value, setValue] = React.useState(null)
-  const increment = React.useCallback(async () => {
-    const response = await fetch(`https://livepeer.studio/api/asset/import`, {
-      method: "POST",
-      mode: 'no-cors',
-      headers: {
-        'Authorization': `Bearer ${process.env.API_KEY_FULL_CORS}`,
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Credentials': 'true',
-        // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-      },
-      body: JSON.stringify({
-        name,
-        url
-      })
-    });
-    const json = await response.json()
-    setValue(json.i)
-  })
+  // const increment = React.useCallback(async () => {
+  //   const response = await fetch(`https://livepeer.studio/api/asset/import`, {
+  //     method: "POST",
+  //     mode: 'no-cors',
+  //     headers: {
+  //       'Authorization': `Bearer ${process.env.API_KEY_FULL_CORS}`,
+  //       'Content-Type': 'application/json',
+  //       'Access-Control-Allow-Origin': '*',
+  //       // 'Access-Control-Allow-Credentials': 'true',
+  //       // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
+  //     },
+  //     body: JSON.stringify({
+  //       name,
+  //       url
+  //     })
+  //   });
+  //   const json = await response.json()
+  //   setValue(json.i)
+  // })
   React.useEffect(() => {
     // Timeout to showcase loading state
     setTimeout(async () => {
       const response = await fetch(`https://livepeer.studio/api/asset/`, {
         method: "GET",
         headers: {
-          'Authorization': `Bearer ${process.env.API_KEY_FULL_CORS}`,
+          'Authorization': `Bearer d7de2383-8323-4e80-9d08-df10b6548494`,
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
         }
@@ -45,7 +45,7 @@ const LoadDataViaApi = (props) => {
       }}
     >
       <h1 style={{textAlign: "center", marginTop: "20vh"}}>
-        Loading (artificially slowed, 2 seconds)...
+        Loading (artificially slowed, 2 seconds)... {value}
       </h1>
     </div>
   }
@@ -54,7 +54,7 @@ const LoadDataViaApi = (props) => {
     <h2>Data fetch after page load</h2>
     <p> This page is loaded in several steps: </p>
     <ol>
-      <li>Fetch the page</li>
+        <li>Fetch the page</li>
       <li>Render loading state</li>
       <li>Fetch data</li>
       <li>Re-render page with data</li>
