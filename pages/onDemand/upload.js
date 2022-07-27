@@ -12,15 +12,8 @@ export default function OnDemand() {
   const submitForm = async (e) => {
     e.preventDefault();
     const { name, url } = formState;
-    await fetch(`https://livepeer.studio/api/asset/import`, {
+    await fetch(`/api/uploadForm`, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.API_KEY_FULL_CORS}`,
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        // 'Access-Control-Allow-Credentials': 'true',
-        // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-      },
       body: JSON.stringify({
         name,
         url,
@@ -29,7 +22,7 @@ export default function OnDemand() {
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
-
+    
     setFormState({
       name: "",
       url: "",
@@ -39,12 +32,12 @@ export default function OnDemand() {
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Uploading with URL</h1>
-      <form onSubmit={submitForm} method="POST" className={styles.card}>
+      <form action={'/api/uploadForm'} method="POST" className={styles.card}>
         <label htmlFor="asset">Asset Name</label>
         <input
           type="text"
           value={formState.name}
-          name="assetName"
+          name="name"
           required
           onChange={(e) => setFormState({ ...formState, name: e.target.value })}
         />
