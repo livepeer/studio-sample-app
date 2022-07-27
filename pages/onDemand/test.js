@@ -27,9 +27,8 @@ const LoadDataViaApi = (props) => {
     setTimeout(async () => {
       const response = await fetch(`https://livepeer.studio/api/asset/`, {
         method: "GET",
-        mode: 'no-cors',
         headers: {
-          'Authorization': `Bearer 3cb6d9f6-d011-49fc-858f-c4c1127083d7`,
+          'Authorization': `Bearer ${process.env.API_KEY_FULL_CORS}`,
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
         }
@@ -50,9 +49,9 @@ const LoadDataViaApi = (props) => {
       </h1>
     </div>
   }
-  return <Layout>
+  return (
+    <div>
     <h2>Data fetch after page load</h2>
-    <a target="_blank" href="https://github.com/alexey-dc/nextjs_express_template/blob/main/pages/load_data_via_api.jsx"> See page source </a>
     <p> This page is loaded in several steps: </p>
     <ol>
       <li>Fetch the page</li>
@@ -64,12 +63,12 @@ const LoadDataViaApi = (props) => {
     <p>It is also more complex. The aim of this project is to allow for simpler patterns that allow more efficient prototyping. See <a href="/preload_data">this example</a> for an alternative that is possible with this NextJS+Express combo setup.</p>
     <div className="f-row">
       <h2 style={{marginRight: "6vw"}}> {value} </h2>
-      <Button  style={{width: "max(12vw, 60px)"}} onClick={increment}> + </Button>
+      <button  style={{width: "max(12vw, 60px)"}} onClick={increment}> + </button>
     </div>
     <div style={{marginBottom: "2vh"}}/>
-    <a href="/"> Back </a>
-  </Layout>
-  
+
+  </div>
+  )
 }
 
 export default LoadDataViaApi
