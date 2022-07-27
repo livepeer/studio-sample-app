@@ -44,8 +44,9 @@ export default function ListAssets({assets}) {
             width="256"
             height="256"
           />
-            <h2> {asset.name} </h2>
-                <p>Status: { asset.status.phase }</p>
+                <h2 className={styles.title2}> { asset.name } </h2>
+                <p>Status:</p>
+                {asset.status.phase === 'ready' ? <p className={styles.ready}>{ asset.status.phase } </p> : <p className={styles.failed}>{ asset.status.phase }</p>}
               </a>
             </Link>
             

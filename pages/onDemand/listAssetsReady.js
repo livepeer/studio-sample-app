@@ -12,17 +12,20 @@ export async function getServerSideProps() {
       "Content-Type": "application/json",
     },
   });
-  const data= await res.json();
-  // let readyAssets = []
-  // for (const asset of data) {
-  //   if (asset.status === "ready") {
-  //     readyAssets.push(asset)
-  //   }
-  // }
+  const data = await res.json();
+  if (res.status !== 200) {
+    throw new Error('error');
+  }
+  let readyAssets = []
+  for (const asset of data) {
+    if (asset.status.phase === "ready") {
+      readyAssets.push(asset)
+    }
+  }
   
   return {
     props: {
-      assets: data,
+      assets: readyAssets,
     },
   };
 }
@@ -49,7 +52,7 @@ export default function ListAssets({ assets }) {
             width="256"
             height="256"
           />
-            <h2> {asset.name} </h2>
+            <h3 className={ styles.title2 }> {asset.name} </h3>
               </a>
             </Link>
             

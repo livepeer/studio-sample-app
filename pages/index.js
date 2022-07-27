@@ -24,7 +24,7 @@ export default function Home() {
             <p>Find in-depth information about Next.js features and API.</p>
           </a> */}
 
-          <Link href="onDemand/listAssets">
+          <Link href="onDemand/">
             <a  className={ styles.card }>
               <h2>On Demand &rarr;</h2>
               <p>Learn all about uploading, updating and deleting assets</p>
