@@ -28,6 +28,7 @@
   flex-grow: 1;
 }
 
+
 .title a {
   color: #245cd8;
   text-decoration: none;
@@ -43,6 +44,13 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+}
+
+.title2 {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 1rem;
+  text-align: center;
 }
 
 .title,
@@ -99,6 +107,20 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+}
+
+.ready  {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color:#5f9612;
+}
+
+.failed  {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: red;
 }
 
 .logo {

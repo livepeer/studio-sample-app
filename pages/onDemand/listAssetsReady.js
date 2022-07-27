@@ -13,9 +13,12 @@ export async function getServerSideProps() {
     },
   });
   const data = await res.json();
+  if (res.status !== 200) {
+    throw new Error('error');
+  }
   let readyAssets = []
   for (const asset of data) {
-    if (asset.status === "ready") {
+    if (asset.status.phase === "ready") {
       readyAssets.push(asset)
     }
   }
@@ -49,7 +52,7 @@ export default function ListAssets({ assets }) {
             width="256"
             height="256"
           />
-            <h2> {asset.name} </h2>
+            <h3 className={ styles.title2 }> {asset.name} </h3>
               </a>
             </Link>
             
