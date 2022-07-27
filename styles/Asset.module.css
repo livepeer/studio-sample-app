@@ -45,6 +45,13 @@
   font-size: 4rem;
 }
 
+.title2 {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 1rem;
+  text-align: center;
+}
+
 .title,
 .description {
   text-align: center;
@@ -67,7 +74,7 @@
 
 .grid {
  display: grid;
- grid-template-columns: repeat(4, 1fr);
+ grid-template-columns: repeat(auto-fit, 1fr);
  grid-gap: 10px;
 }
 
@@ -80,7 +87,7 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: fit content;
 }
 
 .card:hover,
@@ -99,6 +106,25 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+  font-weight: bold;
+}
+.url:hover {
+  color:#5f9612;
+  margin: 0;
+}
+
+.ready  {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color:#5f9612;
+}
+
+.failed  {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: red;
 }
 
 .logo {
