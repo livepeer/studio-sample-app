@@ -2,32 +2,13 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "../../styles/Form.module.css";
 
-export default function OnDemand() {
-  // Getting the asset name and URL from the user
+
+export default function UploadURL() {
   const [formState, setFormState] = useState({
     name: "",
     url: "",
   });
 
-  const submitForm = async (e) => {
-    e.preventDefault();
-    const { name, url } = formState;
-    await fetch(`/api/uploadForm`, {
-      method: "POST",
-      body: JSON.stringify({
-        name,
-        url,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-    
-    setFormState({
-      name: "",
-      url: "",
-    });
-  };
 
   return (
     <div className={styles.main}>

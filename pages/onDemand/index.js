@@ -35,10 +35,25 @@ export default function Home() {
             </a>
           </Link>
 
+
           <Link href="onDemand/listAssetId">
             <a  className={ styles.card }>
               <h2>List Assets by Id &rarr;</h2>
               <p>Gets specific asset by Id</p>
+            </a>
+          </Link>
+
+          <Link href="onDemand/uploadURL">
+            <a  className={ styles.card }>
+              <h2>Upload with URL &rarr;</h2>
+              <p>Upload an asset with a downloadable URL</p>
+            </a>
+          </Link>
+
+          <Link href="onDemand/uploadLocal">
+            <a  className={ styles.card }>
+              <h2>Upload with Local Storage &rarr;</h2>
+              <p>Upload an asset by uploading a file from you local storage</p>
             </a>
           </Link>
 
