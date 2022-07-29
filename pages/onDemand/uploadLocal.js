@@ -4,7 +4,6 @@ import styles from "../../styles/Form.module.css";
 
 
 export default function UploadLocal() {
-  // Getting the asset name from the user
   const [assetName, setAssetName] = useState("");
   const [file, setFile] = useState();
   const [assetURL, setAssetURL] = useState("");
@@ -34,20 +33,25 @@ export default function UploadLocal() {
 
   async function uploadAsset(e) {
     e.preventDefault();
+    console.log(e);
     let formData = new FormData();
-    formData.append('file', file)
-    const response = await fetch(`${assetURL}`, {
-      method: "PUT",
-      headers: {
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
-        'Content-Type': 'video/mp4',
-      },
-      body: JSON.stringify({
-        body: formData
+    formData.append('file', file);
+    formData.append('fileName', file.name)
+    try {
+      const response = await fetch(`${assetURL}`, {
+        method: "PUT",
+        headers: {
+          'Content-Type': 'video/mp4',
+        },
+          body: formData
       })
-    })
-    setFile("")
-    setAssetURL("")
+      setAssetName("")
+      setFile("")
+      setAssetURL("")
+    } catch (error) {
+      console.log(error);
+    }
+    
     }
 
   return (
@@ -66,7 +70,7 @@ export default function UploadLocal() {
         <button type="submit">Get Upload URL</button>
       </form>
 
-      <form onSubmit={uploadAsset} method="POST"  className={styles.card}>
+      <form onSubmit={uploadAsset} method="PUT"  className={styles.card}>
         
         <label htmlFor="url">Upload URL </label>
         <input
@@ -81,15 +85,16 @@ export default function UploadLocal() {
         <input
           type="file"
           name="assetFile"
+          accept='video/mp4'
           required
-          onChange={ (e) => setFile( e.target.file ) }
+          onChange={ (e) => setFile( e.target.files[0] ) }
         />
         <button type="submit">Upload Asset</button>
       </form>
 
       <h3>
-        <Link href="/">
-          <a>&larr; Back to Home Page </a>
+        <Link href="/onDemand">
+          <a>&larr; Back to On Demand Page </a>
         </Link>
       </h3>
     </div>
