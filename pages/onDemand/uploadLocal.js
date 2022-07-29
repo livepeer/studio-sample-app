@@ -10,6 +10,28 @@ export default function UploadLocal() {
   const [assetURL, setAssetURL] = useState("");
 
 
+  async function getUploadURL(e) {
+    e.preventDefault()
+    try {
+      const response = await fetch('/api/getUploadURL', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: assetName
+        })
+      })
+      
+      const data = await response.json()
+      console.log(data);
+
+      setAssetURL(data.url)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   async function uploadAsset(e) {
     e.preventDefault();
     let formData = new FormData();
@@ -31,7 +53,7 @@ export default function UploadLocal() {
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Uploading with Local Storage</h1>
-      <form action={'/api/getUploadURL'} method="POST" className={styles.card}>
+      <form onSubmit={getUploadURL} method="POST" className={styles.card}>
         <label htmlFor="asset">Asset Name</label>
         <input
           type="text"
@@ -42,12 +64,8 @@ export default function UploadLocal() {
         />
         
         <button type="submit">Get Upload URL</button>
-
-        <h3>Upload URL</h3>
-        {/* {url} */}
       </form>
 
-      {/* action={'/api/uploadFile'} */}
       <form onSubmit={uploadAsset} method="POST"  className={styles.card}>
         
         <label htmlFor="url">Upload URL </label>
