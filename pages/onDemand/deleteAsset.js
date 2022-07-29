@@ -43,7 +43,7 @@ export default function UploadURL() {
           onChange={(e) => setAssetId( e.target.value )}
         />
 
-        <button className={styles.deleteButton}type="submit">Delete Asset</button>
+        <button className={styles.deleteButton} type="submit">Delete Asset</button>
       </form>
 
       <h3>

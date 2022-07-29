@@ -120,7 +120,7 @@
   background-color: #245cd8;
 }
 
-.deleteButton {
+.card .deleteButton {
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
