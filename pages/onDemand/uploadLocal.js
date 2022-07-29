@@ -4,34 +4,60 @@ import styles from "../../styles/Form.module.css";
 
 
 export default function UploadLocal() {
-  // Getting the asset name from the user
   const [assetName, setAssetName] = useState("");
   const [file, setFile] = useState();
   const [assetURL, setAssetURL] = useState("");
 
 
+  async function getUploadURL(e) {
+    e.preventDefault()
+    try {
+      const response = await fetch('/api/getUploadURL', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: assetName
+        })
+      })
+      
+      const data = await response.json()
+      console.log(data);
+
+      setAssetURL(data.url)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   async function uploadAsset(e) {
     e.preventDefault();
+    console.log(e);
     let formData = new FormData();
-    formData.append('file', file)
-    const response = await fetch(`${assetURL}`, {
-      method: "PUT",
-      headers: {
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
-        'Content-Type': 'video/mp4',
-      },
-      body: JSON.stringify({
-        body: formData
+    formData.append('file', file);
+    formData.append('fileName', file.name)
+    try {
+      const response = await fetch(`${assetURL}`, {
+        method: "PUT",
+        headers: {
+          'Content-Type': 'video/mp4',
+        },
+          body: formData
       })
-    })
-    setFile("")
-    setAssetURL("")
+      setAssetName("")
+      setFile("")
+      setAssetURL("")
+    } catch (error) {
+      console.log(error);
+    }
+    
     }
 
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Uploading with Local Storage</h1>
-      <form action={'/api/getUploadURL'} method="POST" className={styles.card}>
+      <form onSubmit={getUploadURL} method="POST" className={styles.card}>
         <label htmlFor="asset">Asset Name</label>
         <input
           type="text"
@@ -42,13 +68,9 @@ export default function UploadLocal() {
         />
         
         <button type="submit">Get Upload URL</button>
-
-        <h3>Upload URL</h3>
-        {/* {url} */}
       </form>
 
-      {/* action={'/api/uploadFile'} */}
-      <form onSubmit={uploadAsset} method="POST"  className={styles.card}>
+      <form onSubmit={uploadAsset} method="PUT"  className={styles.card}>
         
         <label htmlFor="url">Upload URL </label>
         <input
@@ -63,15 +85,16 @@ export default function UploadLocal() {
         <input
           type="file"
           name="assetFile"
+          accept='video/mp4'
           required
-          onChange={ (e) => setFile( e.target.file ) }
+          onChange={ (e) => setFile( e.target.files[0] ) }
         />
         <button type="submit">Upload Asset</button>
       </form>
 
       <h3>
-        <Link href="/">
-          <a>&larr; Back to Home Page </a>
+        <Link href="/onDemand">
+          <a>&larr; Back to On Demand Page </a>
         </Link>
       </h3>
     </div>

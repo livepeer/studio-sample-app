@@ -120,6 +120,16 @@
   background-color: #245cd8;
 }
 
+.card .deleteButton {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color:#eaeaea;
+  border-radius: 5px;
+  border: none;
+  background-color: #cc2626;
+}
+
 .logo {
   height: 1em;
   margin-left: 0.5rem;
