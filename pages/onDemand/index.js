@@ -57,7 +57,21 @@ export default function Home() {
             </a>
           </Link>
 
+
+          <Link href="onDemand/updateAsset">
+            <a  className={ styles.card }>
+              <h2>Update stored Assets &rarr;</h2>
+              <p>Update assets already stored</p>
+            </a>
+          </Link>
+
+          
         </div>
+        <h3>
+        <Link href="/">
+          <a>&larr; Back to Home Page </a>
+        </Link>
+      </h3>
       </main>
 
       <footer className={styles.footer}>
