@@ -25,9 +25,7 @@ export async function getServerSideProps() {
 
 
 export default function ListAssets({assets}) {
-  console.log(assets);
-
-
+  // console.log(assets);
 
   return (
     <main className = { styles.main } >
@@ -53,6 +51,12 @@ export default function ListAssets({assets}) {
           </div>
         ))}
       </ul>
+
+      <h3>
+        <Link href="/onDemand">
+          <a>&larr; Back to OnDemand Page </a>
+        </Link>
+      </h3>
 
     </ main>
       );
