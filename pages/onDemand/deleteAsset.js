@@ -7,7 +7,7 @@ export default function UploadURL() {
   const [assetId, setAssetId] = useState("");
 
 
-  async function updateAsset(e) {
+  async function deleteAsset(e) {
     e.preventDefault()
     try {
       const response = await fetch('/api/delete', {
@@ -32,7 +32,7 @@ export default function UploadURL() {
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Delete Asset</h1>
-      <form onSubmit={ updateAsset } method="DELETE" className={ styles.card }>
+      <form onSubmit={ deleteAsset } method="DELETE" className={ styles.card }>
         
       <label htmlFor="asset">Asset ID</label>
         <input
