@@ -60,6 +60,12 @@ export default function ListAssets({ assets }) {
         ))}
       </ul>
 
+      <h3>
+        <Link href="/onDemand">
+          <a>&larr; Back to OnDemand Page </a>
+        </Link>
+      </h3>
+
     </ main>
       );
 }

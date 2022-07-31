@@ -28,7 +28,6 @@
   flex-grow: 1;
 }
 
-
 .title a {
   color: #245cd8;
   text-decoration: none;
@@ -44,13 +43,6 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
-}
-
-.title2 {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 1rem;
-  text-align: center;
 }
 
 .title,
@@ -74,9 +66,11 @@
 }
 
 .grid {
- display: grid;
- grid-template-columns: repeat(4, 1fr);
- grid-gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
 }
 
 .card {
@@ -102,25 +96,28 @@
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
 }
+.card label {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+.card input {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
 
 .card p {
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
 }
-
-.ready  {
+.card button {
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
-  color:#5f9612;
-}
-
-.failed  {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  color: red;
+  color:#eaeaea;
+  border-radius: 5px;
+  border: none;
+  background-color: #245cd8;
 }
 
 .logo {
