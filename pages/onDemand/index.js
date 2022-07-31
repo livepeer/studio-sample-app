@@ -21,29 +21,36 @@ export default function Home() {
         <div className={styles.grid}>
       
 
-          <Link href="onDemand/listAssets">
+        <Link href="onDemand/uploadURL">
             <a  className={ styles.card }>
-              <h2>List All Assets &rarr;</h2>
-              <p>Gets all assets from your account</p>
+              <h2>Upload with URL &rarr;</h2>
+              <p>Upload an asset with a download URL</p>
             </a>
           </Link>
 
-          <Link href="onDemand/listAssetsReady">
+          <Link href="onDemand/uploadLocal">
             <a  className={ styles.card }>
-              <h2>List Ready Assets &rarr;</h2>
-              <p>Gets all assets that has a ready status</p>
+              <h2>Upload with Local Storage &rarr;</h2>
+              <p>Upload asset with file from local storage</p>
+            </a>
+          </Link>
+
+          <Link href="onDemand/updateAsset">
+            <a  className={ styles.card }>
+              <h2>Update an Asset &rarr;</h2>
+              <p>Update an existing stored asset</p>
             </a>
           </Link>
 
 
-          <Link href="onDemand/listAssetId">
+          <Link href="onDemand/deleteAsset">
             <a  className={ styles.card }>
-              <h2>List Assets by Id &rarr;</h2>
-              <p>Gets specific asset by Id</p>
+              <h2>Delete an Asset &rarr;</h2>
+              <p>Delete a stored asset</p>
             </a>
           </Link>
 
-
+         
 
           
         </div>

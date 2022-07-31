@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function handler(req, res) {
   const { name, storage, meta } = req.body;
-  const assetId = JSON.stringify(req.body.assetId);
+  const assetId = req.body.assetId;
   try {
     const response = await fetch(`https://livepeer.studio/api/asset/${assetId}`, {
       method: "PUT",
