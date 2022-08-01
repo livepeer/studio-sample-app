@@ -20,6 +20,29 @@ export default function Home() {
 
         <div className={styles.grid}>
       
+        <Link href="onDemand/listAssets">
+            <a  className={ styles.card }>
+              <h2>List All Assets &rarr;</h2>
+              <p>Gets all assets from your account</p>
+            </a>
+          </Link>
+
+          <Link href="onDemand/listAssetsReady">
+            <a  className={ styles.card }>
+              <h2>List Ready Assets &rarr;</h2>
+              <p>Gets all assets that has a ready status</p>
+            </a>
+          </Link>
+
+
+          <Link href="onDemand/listAssetId">
+            <a  className={ styles.card }>
+              <h2>List Assets by Id &rarr;</h2>
+              <p>Gets specific asset by Id</p>
+            </a>
+          </Link>   
+
+
 
         <Link href="onDemand/uploadURL">
             <a  className={ styles.card }>
