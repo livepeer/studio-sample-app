@@ -4,34 +4,28 @@ import Link from "next/link";
 import logo from "../../public/studioLogo.png";
 import styles from "../../styles/Assets.module.css";
 
-export async function getServerSideProps({ query }) {
-  const { id } = query;
-  const res = await fetch(`https://livepeer.studio/api/asset/${id}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${process.env.API_KEY}`,
-      "Content-Type": "application/json",
-    },
-  });
 
-  const data = await res.json();
-
-  return {
-    props: {
-      asset: data,
-    },
-  };
-}
-
-export default function ListAssetByID(asset) {
+export default function ListAssetByID() {
   // Gets asset from user input
-  const [assetId, setAssetId] = useState("");
-  // Gets specific asset from ServerSideProps
+  const [assetId, setAssetId] = useState('');
+  const [getAsset, setGetAsset] = useState('');
 
   async function fetchAsset(e) {
     e.preventDefault();
-    // console.log(assetId);
-  }
+
+    const res = await fetch(`/api/getAsset`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${process.env.API_KEY}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+    const data = await res.json();
+    console.log(data);
+
+    setGetAsset(data)
+    }
 
   return (
     <main className={styles.main}>
@@ -48,20 +42,44 @@ export default function ListAssetByID(asset) {
         <button type="submit">Get Asset</button>
       </form>
 
-      {/* <div className={styles.grid}> */}
-        {/* <div className={styles.card} key={asset.id}> */}
-        {/* <Image
-              src={ logo }
-              alt="Livepeer Studio Logo"
-              width="256"
-              height="256"
-         /> */}
-        {/* <h3 className={styles.title2}> {asset.name} </h3> */}
-        {/* <p>Id:</p>
-          { assets.id } */}
-        {/* </Link> */}
-        {/* </div> */}
-      {/* </div> */}
+
+
+<div className={styles.card} key={getAsset.id}>
+        <a>
+          <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
+          <h2> {getAsset.name} </h2>
+          <p>Status:</p>
+          {/* {getAsset.status.phase === "ready" ? (
+            <p className={styles.ready}>{getAsset.status.phase} </p>
+          ) : (
+            <p className={styles.failed}>{getAsset.status.phase}</p>
+          )} */}
+          <p>Id:</p>
+          { getAsset.id }
+          
+          {/* {getAsset.status.phase === "ready" ? (
+            null
+          ) : <div> <p>Error:</p> {getAsset.status.errorMessage} </div> } */}
+          {/* {assets.status.phase === "ready" ? (
+            <div>
+             <p> Playback Id:</p>{getAsset.playbackId}
+            </div>
+          ) : null} */}
+          {/* {getAsset.status.phase === "ready" ? (
+            <div>
+              <p>Playback URL</p> {getAsset.playbackUrl} 
+            </div>
+          ) : null} */}
+          {/* {getAsset.status.phase === "ready" ? (
+            <div>
+              <p>DownloadUrl</p>
+              <a className={styles.url} href={getAsset.downloadUrl} target="_blank" rel="noreferrer">
+                {getAsset.downloadUrl}
+              </a>{" "}
+            </div>
+          ) : null} */}
+        </a>
+      </div>
 
       <h3>
         <Link href="/onDemand">
