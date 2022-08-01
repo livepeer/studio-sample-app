@@ -32,7 +32,10 @@ export default function UploadLocal() {
   async function uploadAsset(e) {
     e.preventDefault();
     console.log(e);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2960a02f81d4ac3a19ac177c7add700c9f01661
     try {
       await fetch(`${assetURL}`, {
         method: "PUT",
