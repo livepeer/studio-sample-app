@@ -34,16 +34,13 @@ export default function UploadLocal() {
   async function uploadAsset(e) {
     e.preventDefault();
     console.log(e);
-    let formData = new FormData();
-    formData.append('file', file);
-    formData.append('fileName', file.name)
     try {
       const response = await fetch(`${assetURL}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'video/mp4',
         },
-          body: formData
+          body: file
       })
       setAssetName("")
       setFile("")
