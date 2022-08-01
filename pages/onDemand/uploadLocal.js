@@ -2,57 +2,53 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "../../styles/Form.module.css";
 
-
 export default function UploadLocal() {
   const [assetName, setAssetName] = useState("");
   const [file, setFile] = useState();
   const [assetURL, setAssetURL] = useState("");
 
-
   async function getUploadURL(e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const response = await fetch('/api/getUploadURL', {
+      const response = await fetch("/api/getUploadURL", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: assetName
-        })
-      })
-      
-      const data = await response.json()
+          name: assetName,
+        }),
+      });
+
+      const data = await response.json();
       console.log(data);
 
-      setAssetURL(data.url)
+      setAssetURL(data.url);
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 
   async function uploadAsset(e) {
     e.preventDefault();
     console.log(e);
-    let formData = new FormData();
-    formData.append('file', file);
-    formData.append('fileName', file.name)
+
     try {
-      const response = await fetch(`${assetURL}`, {
+      await fetch(`${assetURL}`, {
         method: "PUT",
         headers: {
-          'Content-Type': 'video/mp4',
+          "Content-Type": "video/mp4",
         },
-          body: formData
-      })
-      setAssetName("")
-      setFile("")
-      setAssetURL("")
+        body: file,
+      });
+
+      setAssetName("");
+      setFile("");
+      setAssetURL("");
     } catch (error) {
       console.log(error);
     }
-    
-    }
+  }
 
   return (
     <div className={styles.main}>
@@ -66,12 +62,11 @@ export default function UploadLocal() {
           required
           onChange={(e) => setAssetName(e.target.value)}
         />
-        
+
         <button type="submit">Get Upload URL</button>
       </form>
 
-      <form onSubmit={uploadAsset} method="PUT"  className={styles.card}>
-        
+      <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
         <label htmlFor="url">Upload URL </label>
         <input
           type="url"
@@ -79,15 +74,15 @@ export default function UploadLocal() {
           name="url"
           required
           pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
-          onChange={(e) => setAssetURL(e.target.value )}
+          onChange={(e) => setAssetURL(e.target.value)}
         />
 
         <input
           type="file"
           name="assetFile"
-          accept='video/mp4'
+          accept="video/mp4"
           required
-          onChange={ (e) => setFile( e.target.files[0] ) }
+          onChange={(e) => setFile(e.target.files[0])}
         />
         <button type="submit">Upload Asset</button>
       </form>
