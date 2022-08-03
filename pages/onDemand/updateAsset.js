@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "../../public/studioLogo.png"
 import styles from "../../styles/Form.module.css";
 
 
@@ -16,12 +18,13 @@ export default function UploadURL() {
     e.preventDefault()
     try {
       const response = await fetch('/api/update', {
-        method: "PUT",
+        method: "PATCH",
         headers: {
+          Authorization: `Bearer ${process.env.API_KEY}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          asseId: formState.assetId,
+          assetId: formState.assetId,
           name: formState.name,
           storage: formState.storage,
           meta: formState.meta
@@ -37,7 +40,6 @@ export default function UploadURL() {
       const data = await response.json()
       console.log(data);
     } catch (e) {
-      console.log(e)
     }
   }
 
@@ -45,13 +47,14 @@ export default function UploadURL() {
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Updating Asset</h1>
-      <form onSubmit={ updateAsset } method="PUT" className={ styles.card }>
+      <form onSubmit={ updateAsset } method="PATCH" className={ styles.card }>
         
       <label htmlFor="asset">Asset ID</label>
         <input
           type="text"
           value={formState.assetId}
           name="assetId"
+          required
           onChange={(e) => setFormState({ ...formState, assetId: e.target.value })}
         />
 
@@ -64,7 +67,7 @@ export default function UploadURL() {
         />
 
         <label htmlFor="url">Storage </label>
-        <input
+        <textarea
           type="text"
           value={formState.storage}
           name="storage"
@@ -72,7 +75,7 @@ export default function UploadURL() {
         />
 
         <label htmlFor="url">Metadata </label>
-        <input
+        <textarea
           type="text"
           value={formState.meta}
           name="meta"
@@ -81,6 +84,8 @@ export default function UploadURL() {
         <button type="submit">Upload Asset</button>
       </form>
 
+      
+      
       <h3>
         <Link href="/onDemand">
           <a>&larr; Back to On Demand Page </a>
