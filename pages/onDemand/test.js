@@ -4,27 +4,41 @@ import Link from "next/link";
 import logo from "../../public/studioLogo.png";
 import styles from "../../styles/Assets.module.css";
 
-
-export default function ListAssetByID() {
-  const [assetId, setAssetId] = useState('');
-  const [getAsset, setGetAsset] = useState('');
-
-  async function fetchAsset(e) {
-    e.preventDefault();
-    console.log(assetId);
-    const res = await fetch(`https://livepeer.studio/api/asset/${assetId}`, {
-          method: "GET",
+export async function getServerSideProps({query}) {
+  
+  const res = await fetch(`https://livepeer.studio/api/asset/?q=${query.assetId}`, {
+    method: "GET",
           headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_FULL_CORS}`,
+            Authorization: `Bearer ${process.env.API_KEY}`,
             "Content-Type": "application/json",
           },
-        });
+  })
+  const data = await res.json()
 
-    const data = await res.json();
-    console.log(data);
+  return { props: { data } }
+}
 
-    setGetAsset(data)
-    }
+
+export default function ListAssetByID(props) {
+  const [assetId, setAssetId] = useState('');
+  const [getAsset, setGetAsset] = useState('');
+  console.log(props);
+  // async function fetchAsset(e) {
+  //   e.preventDefault();
+  //   console.log(assetId);
+  //   const res = await fetch(`https://livepeer.studio/api/asset/${assetId}`, {
+  //         method: "GET",
+  //         headers: {
+  //           Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
+  //           "Content-Type": "application/json",
+  //         },
+  //       });
+
+  //   const data = await res.json();
+  //   console.log(data);
+
+  //   setGetAsset(data)  
+  //   }
 
 
 
@@ -32,7 +46,7 @@ export default function ListAssetByID() {
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>Get Assets By Id</h1>
-      <form onSubmit={fetchAsset} method="GET" className={styles.card}>
+      <form  method="GET" className={styles.card}>
         <label htmlFor="asset">Asset ID: </label>
         <input
           type="search"
