@@ -4,21 +4,17 @@ export default async function handler(req, res) {
     const response = await fetch(`https://livepeer.studio/api/asset/${req.query.getAsset}`, {
       method: "GET",
       headers: {
-        'Authorization': `Bearer ${process.env.API_KEY}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.API_KEY}`,
+        "Content-Type": "application/json",
       },
-    })
-   
+    });
+
     const data = await response.json();
     console.log(data);
-   
+
     res.status(200).json(data);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-  res.status(400).send("Error")
-
-
-
-
+  res.status(400).send("Error");
 }
