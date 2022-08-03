@@ -26,8 +26,8 @@ export default function UploadURL() {
         body: JSON.stringify({
           assetId: formState.assetId,
           name: formState.name,
-          storage: formState.storage,
-          meta: formState.meta
+          storage: formState.storage ? JSON.parse(formState.storage) : undefined,
+          meta: formState.meta ? JSON.parse(formState.meta) : undefined
         })
       })
       
