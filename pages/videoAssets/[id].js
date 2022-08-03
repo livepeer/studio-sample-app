@@ -40,13 +40,25 @@ export async function getStaticProps({ params }) {
 
 export default function Details({ assets }) {
   const {
-    query: { id },} = useRouter();
- 
+    query: { id },
+  } = useRouter();
+
   return (
     <div>
       <div className={styles.card} key={id}>
         <a>
-          <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
+        {assets.status.phase === "ready" ? (
+            <iframe
+            src={`https://lvpr.tv?v=${assets.playbackId}`}
+            frameForder="0"
+            allowFullScreen
+            allow="autoplay; encrypted-media; picture-in-picture"
+            sandbox="allow-scripts"
+          ></iframe>
+          ) : (
+            <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
+          )}
+
           <h2> {assets.name} </h2>
           <p>Status:</p>
           {assets.status.phase === "ready" ? (
@@ -55,19 +67,23 @@ export default function Details({ assets }) {
             <p className={styles.failed}>{assets.status.phase}</p>
           )}
           <p>Id:</p>
-          { assets.id }
-          
-          {assets.status.phase === "ready" ? (
-            null
-          ) : <div> <p>Error:</p> {assets.status.errorMessage} </div> }
+          {assets.id}
+
+          {assets.status.phase === "ready" ? null : (
+            <div>
+              {" "}
+              <p>Error:</p> {assets.status.errorMessage}{" "}
+            </div>
+          )}
           {assets.status.phase === "ready" ? (
             <div>
-             <p> Playback Id:</p>{assets.playbackId}
+              <p> Playback Id:</p>
+              {assets.playbackId}
             </div>
           ) : null}
           {assets.status.phase === "ready" ? (
             <div>
-              <p>Playback URL</p> {assets.playbackUrl} 
+              <p>Playback URL</p> {assets.playbackUrl}
             </div>
           ) : null}
           {assets.status.phase === "ready" ? (
