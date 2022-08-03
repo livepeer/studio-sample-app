@@ -6,17 +6,16 @@ import styles from "../../styles/Assets.module.css";
 
 
 export default function ListAssetByID() {
-  // Gets asset from user input
   const [assetId, setAssetId] = useState('');
   const [getAsset, setGetAsset] = useState('');
 
   async function fetchAsset(e) {
     e.preventDefault();
-
-    const res = await fetch(`/api/getAsset`, {
+    console.log(assetId);
+    const res = await fetch(`https://livepeer.studio/api/asset/${assetId}`, {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${process.env.API_KEY}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_FULL_CORS}`,
             "Content-Type": "application/json",
           },
         });
@@ -26,6 +25,9 @@ export default function ListAssetByID() {
 
     setGetAsset(data)
     }
+
+
+
 
   return (
     <main className={styles.main}>
@@ -43,43 +45,20 @@ export default function ListAssetByID() {
       </form>
 
 
-
-<div className={styles.card} key={getAsset.id}>
-        <a>
-          <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
-          <h2> {getAsset.name} </h2>
-          <p>Status:</p>
-          {/* {getAsset.status.phase === "ready" ? (
-            <p className={styles.ready}>{getAsset.status.phase} </p>
-          ) : (
-            <p className={styles.failed}>{getAsset.status.phase}</p>
-          )} */}
-          <p>Id:</p>
-          { getAsset.id }
-          
-          {/* {getAsset.status.phase === "ready" ? (
-            null
-          ) : <div> <p>Error:</p> {getAsset.status.errorMessage} </div> } */}
-          {/* {assets.status.phase === "ready" ? (
-            <div>
-             <p> Playback Id:</p>{getAsset.playbackId}
-            </div>
-          ) : null} */}
-          {/* {getAsset.status.phase === "ready" ? (
-            <div>
-              <p>Playback URL</p> {getAsset.playbackUrl} 
-            </div>
-          ) : null} */}
-          {/* {getAsset.status.phase === "ready" ? (
-            <div>
-              <p>DownloadUrl</p>
-              <a className={styles.url} href={getAsset.downloadUrl} target="_blank" rel="noreferrer">
-                {getAsset.downloadUrl}
-              </a>{" "}
-            </div>
-          ) : null} */}
-        </a>
-      </div>
+      
+      { { getAsset } ?
+        <div className={ styles.card } key={ getAsset.id }>
+          <Link href={ `/videoAssets/${getAsset.id}` }>
+            <a>
+              <Image src={ logo } alt="Livepeer Studio Logo" width="256" height="256" />
+              <h2> { getAsset.name } </h2>
+            </a>
+          </Link>
+        </div> : null }
+        
+      
+      
+      
 
       <h3>
         <Link href="/onDemand">
