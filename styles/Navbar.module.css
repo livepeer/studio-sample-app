@@ -1,28 +1,43 @@
-.navbar {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 200px; /* Set the width of the sidebar */
-  position: fixed; 
-  z-index: 1; 
-  top: 0; 
-  left: 0;
-  background-color: #111; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+.sidebar {
+  position: fixed;
+  width: 15%;
+  height: 100vh;
+  background: #245cd8;
+  font-size: 0.65em;
 }
 
-.links {
+.nav {
+  position: relative;
+  margin: 0 15%;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+}
+
+.nav ul {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-  padding: 20px 8px 6px 20px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
+  justify-content: start;
+  list-style: none;
+  padding: 0;
+}
+  
+.nav a {
+margin-bottom: 20px;
+font-size: 20px;
+width: 150px;
+border: 1px white solid;
+border-radius: 5px;
+box-shadow: 2px 2px;
 }
 
-.links a:hover {
-  color: #245cd8;
-}
+.nav a:hover {
+ margin-bottom: 20px;
+font-size: 20px;
+width: 150px;
+border: 1px white solid;
+border-radius: 5px;
+border: 1px black solid;
+color: white;
+  }
