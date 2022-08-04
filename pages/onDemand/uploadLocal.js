@@ -6,6 +6,7 @@ export default function UploadLocal() {
   const [assetName, setAssetName] = useState("");
   const [file, setFile] = useState();
   const [assetURL, setAssetURL] = useState("");
+  const [assetTUS, setAssetTUS] = useState("");
 
   async function getUploadURL(e) {
     e.preventDefault();
@@ -24,6 +25,7 @@ export default function UploadLocal() {
       console.log(data);
 
       setAssetURL(data.url);
+      setAssetTUS(data.tusEndpoint);
     } catch (e) {
       console.log(e);
     }
@@ -44,6 +46,7 @@ export default function UploadLocal() {
       setAssetName("");
       setFile("");
       setAssetURL("");
+      setAssetTUS("");
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +55,7 @@ export default function UploadLocal() {
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Uploading with Local Storage</h1>
-      <form onSubmit={getUploadURL} method="POST" className={styles.card}>
+      <form method="POST" className={styles.card}>
         <label htmlFor="asset">Asset Name</label>
         <input
           type="text"
@@ -62,11 +65,11 @@ export default function UploadLocal() {
           onChange={(e) => setAssetName(e.target.value)}
         />
 
-        <button type="submit">Get Upload URL</button>
+        <button onClick={ getUploadURL }>Get Upload URL</button>
       </form>
 
       <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
-        <label htmlFor="url">Upload URL </label>
+        <label htmlFor="url">Direct Upload </label>
         <input
           type="url"
           value={assetURL}
@@ -75,6 +78,7 @@ export default function UploadLocal() {
           pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
           onChange={(e) => setAssetURL(e.target.value)}
         />
+
 
         <input
           type="file"
@@ -85,6 +89,29 @@ export default function UploadLocal() {
         />
         <button type="submit">Upload Asset</button>
       </form>
+
+      <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
+        <label htmlFor="url">Resumable Upload </label>
+        <input
+          type="url"
+          value={assetTUS}
+          name="url"
+          required
+          pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
+          onChange={(e) => setAssetTUS(e.target.value)}
+        />
+        
+
+        <input
+          type="file"
+          name="assetFile"
+          accept="video/mp4"
+          required
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+        <button type="submit">Upload Asset</button>
+          </form>
+
 
       <h3>
         <Link href="/onDemand">
