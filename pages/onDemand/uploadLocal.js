@@ -46,6 +46,7 @@ export default function UploadLocal() {
       setAssetName("");
       setFile("");
       setAssetURL("");
+      setAssetTUS("");
     } catch (error) {
       console.log(error);
     }
@@ -65,11 +66,10 @@ export default function UploadLocal() {
         />
 
         <button onClick={ getUploadURL }>Get Upload URL</button>
-        <button onClick={ getUploadURL }>Get Upload TUS</button>
       </form>
 
       <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
-        <label htmlFor="url">Upload URL </label>
+        <label htmlFor="url">Direct Upload </label>
         <input
           type="url"
           value={assetURL}
@@ -91,7 +91,7 @@ export default function UploadLocal() {
       </form>
 
       <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
-        <label htmlFor="url">Upload TUS </label>
+        <label htmlFor="url">Resumable Upload </label>
         <input
           type="url"
           value={assetTUS}
