@@ -1,33 +1,23 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/studioLogo.png";
 import styles from "../../styles/Assets.module.css";
 
-
 export default function ListAssetByID() {
-  const [assetId, setAssetId] = useState('');
-  const [getAsset, setGetAsset] = useState('');
+  const [assetId, setAssetId] = useState("");
+  const [getAsset, setGetAsset] = useState("");
 
-  async function fetchAsset(e) {
+  async function fetchAsset(e: FormEvent) {
     e.preventDefault();
     console.log(assetId);
-    const res = await fetch(`https://livepeer.studio/api/asset/${assetId}`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_FULL_CORS}`,
-            "Content-Type": "application/json",
-          },
-        });
+    const res = await fetch(`/api/asset/${assetId}`);
 
     const data = await res.json();
     console.log(data);
 
-    setGetAsset(data)
-    }
-
-
-
+    setGetAsset(data);
+  }
 
   return (
     <main className={styles.main}>
@@ -44,21 +34,16 @@ export default function ListAssetByID() {
         <button type="submit">Get Asset</button>
       </form>
 
-
-      
-      { { getAsset } ?
-        <div className={ styles.card } key={ getAsset.id }>
-          <Link href={ `/videoAssets/${getAsset.id}` }>
+      {!getAsset ? null: (
+        <div className={styles.card} key={getAsset.id}>
+          <Link href={`/videoAssets/${getAsset.id}`}>
             <a>
-              <Image src={ logo } alt="Livepeer Studio Logo" width="256" height="256" />
-              <h2> { getAsset.name } </h2>
+              <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
+              <h2> {getAsset.name} </h2>
             </a>
           </Link>
-        </div> : null }
-        
-      
-      
-      
+        </div>
+      )}
 
       <h3>
         <Link href="/onDemand">
