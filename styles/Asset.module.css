@@ -104,22 +104,42 @@
   display: inline-grid;
   grid-template-columns: auto auto auto;
   grid-gap: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  padding: 30px 20px;
+  border-color: #245cd8;
 }
 
 .embedInfo {
   padding: 10px;
+  margin-left: 20px;
   border: none;
   font-size: 12px;
-  text-align: center;
+  text-align: left;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  border-color: #245cd8;
 }
 
 .iframe {
   padding: 10px;
   border: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  border-color: #245cd8;
+}
+
+.cardbody {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  border-color: #245cd8;
 }
 
 .card h2 {
-  margin: 0 0 1rem 0;
+  margin: 1rem 0 1rem 0;
   font-size: 1.5rem;
 }
 
