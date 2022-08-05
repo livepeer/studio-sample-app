@@ -1,10 +1,9 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function handler(req, res) {
-  const { assetId } = req.query;
-  console.log(assetId);
+  const assetId = req.body.assetId;
   try {
-    const response = await fetch(`https://livepeer.studio/api/asset/${req.query}`, {
-      method: "GET",
+    const response = await fetch(`https://livepeer.studio/api/asset/${assetId}`, {
+      method: "DELETE",
       headers: {
         'Authorization': `Bearer ${process.env.API_KEY}`,
         'Content-Type': 'application/json',
