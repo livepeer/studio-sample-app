@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import styles from "../../styles/Form.module.css";
+import styles from "../../styles/UploadForm.module.css";
 
 export default function UploadLocal() {
   const [assetName, setAssetName] = useState("");
@@ -55,63 +55,67 @@ export default function UploadLocal() {
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Uploading with Local Storage</h1>
-      <form method="POST" className={styles.card}>
-        <label htmlFor="asset">Asset Name</label>
-        <input
-          type="text"
-          value={assetName}
-          name="name"
-          required
-          onChange={(e) => setAssetName(e.target.value)}
-        />
-
-        <button onClick={ getUploadURL }>Get Upload URL</button>
+        <form method="POST" className={styles.card}>
+          <label htmlFor="asset">Asset Name</label>
+          <br />
+          <input
+            type="text"
+            value={assetName}
+            name="name"
+            required
+            onChange={(e) => setAssetName(e.target.value)}
+          />
+          <br />
+          <button onClick={getUploadURL}>Get Upload URL</button>
       </form>
 
-      <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
-        <label htmlFor="url">Direct Upload </label>
-        <input
-          type="url"
-          value={assetURL}
-          name="url"
-          required
-          pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
-          onChange={(e) => setAssetURL(e.target.value)}
-        />
+      <h5 className={ styles.h5 }>Select Upload Method</h5>
+      
+      <div className={ styles.grid }>
+        <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
+          <label htmlFor="url">Direct Upload </label>
+          <br />
+          <input
+            type="url"
+            value={assetURL}
+            name="url"
+            required
+            pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
+            onChange={(e) => setAssetURL(e.target.value)}
+          />
 
+          <input
+            type="file"
+            name="assetFile"
+            accept="video/mp4"
+            required
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+          <button type="submit">Upload Asset</button>
+        </form>
 
-        <input
-          type="file"
-          name="assetFile"
-          accept="video/mp4"
-          required
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-        <button type="submit">Upload Asset</button>
-      </form>
+        <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
+          <label htmlFor="url">Resumable Upload </label>
+          <br />
+          <input
+            type="url"
+            value={assetTUS}
+            name="url"
+            required
+            pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
+            onChange={(e) => setAssetTUS(e.target.value)}
+          />
 
-      <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
-        <label htmlFor="url">Resumable Upload </label>
-        <input
-          type="url"
-          value={assetTUS}
-          name="url"
-          required
-          pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
-          onChange={(e) => setAssetTUS(e.target.value)}
-        />
-        
-
-        <input
-          type="file"
-          name="assetFile"
-          accept="video/mp4"
-          required
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-        <button type="submit">Upload Asset</button>
-          </form>
-
+          <input
+            type="file"
+            name="assetFile"
+            accept="video/mp4"
+            required
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+          <button type="submit">Upload Asset</button>
+        </form>
+      </div>
 
       <h3>
         <Link href="/onDemand">
