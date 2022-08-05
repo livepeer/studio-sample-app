@@ -82,8 +82,8 @@
 }
 
 .card {
-  margin: 1rem;
-  padding: 1.5rem;
+  margin: 1rem 17rem 10rem 15rem ;
+  padding: 5rem ;
   text-align: left;
   color: inherit;
   text-decoration: none;
@@ -98,6 +98,24 @@
 .card:active {
   color: #245cd8;
   border-color: #245cd8;
+}
+
+.videoInfo {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+}
+
+.embedInfo {
+  padding: 10px;
+  border: none;
+  font-size: 12px;
+  text-align: center;
+}
+
+.iframe {
+  padding: 10px;
+  border: none;
 }
 
 .card h2 {

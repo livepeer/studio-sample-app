@@ -1,4 +1,5 @@
 import Image from "next/image";
+import {CopyBlock} from "react-code-blocks"
 import { useRouter } from "next/router";
 import logo from "../../public/studioLogo.png";
 import styles from "../../styles/Asset.module.css";
@@ -47,17 +48,28 @@ export default function Details({ assets }) {
     <div>
       <div className={styles.card} key={id}>
         <a>
-        {assets.status.phase === "ready" ? (
-            <iframe
+          { assets.status.phase === "ready" ? (
+            <div className={styles.videoInfo}>
+              <iframe
+                className={styles.iframe}
             src={`https://lvpr.tv?v=${assets.playbackId}`}
             frameForder="0"
             allowFullScreen
             allow="autoplay; encrypted-media; picture-in-picture"
             sandbox="allow-scripts"
-          ></iframe>
+              ></iframe>
+              <code className={ styles.embedInfo }><iframe
+                src={ `https://lvpr.tv?v=${assets.playbackId}` }
+                frameForder="0"
+                allowFullScreen
+                allow="autoplay; encrypted-media; picture-in-picture"
+                sandbox="allow-scripts"
+              ></iframe></code>
+              </div>
           ) : (
             <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
           )}
+
 
           <h2> {assets.name} </h2>
           <p>Status:</p>
