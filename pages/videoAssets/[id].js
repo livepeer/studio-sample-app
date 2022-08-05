@@ -46,20 +46,38 @@ export default function Details({ assets }) {
   return (
     <div>
       <div className={styles.card} key={id}>
-        <a>
         {assets.status.phase === "ready" ? (
+          <div className={styles.videoInfo}>
             <iframe
-            src={`https://lvpr.tv?v=${assets.playbackId}`}
-            frameForder="0"
-            allowFullScreen
-            allow="autoplay; encrypted-media; picture-in-picture"
-            sandbox="allow-scripts"
-          ></iframe>
-          ) : (
-            <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
-          )}
+              className={styles.iframe}
+              src={`https://lvpr.tv?v=${assets.playbackId}`}
+              frameForder="0"
+              height="200px"
+              allowFullScreen
+              allow="autoplay; encrypted-media; picture-in-picture"
+              sandbox="allow-scripts"
+            ></iframe>
 
-          <h2> {assets.name} </h2>
+            <code className={styles.embedInfo}>
+              <p>Embed Player Code</p>
+              <br />
+              {`<iframe>`}
+              <br />
+              src={`https://lvpr.tv?v=${assets.playbackId}`}'
+              <br />
+              allow='autoplay; encrypted-media; picture-in-picture'
+              <br />
+              sandbox='allow-scripts'
+              <br />
+              {`</iframe>`}
+            </code>
+          </div>
+        ) : (
+          <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
+        )}
+
+        <div className={styles.cardbody}>
+          <h2> Name: {assets.name} </h2>
           <p>Status:</p>
           {assets.status.phase === "ready" ? (
             <p className={styles.ready}>{assets.status.phase} </p>
@@ -94,7 +112,7 @@ export default function Details({ assets }) {
               </a>{" "}
             </div>
           ) : null}
-        </a>
+        </div>
       </div>
     </div>
   );
