@@ -4,9 +4,11 @@ import styles from "../../styles/UploadForm.module.css";
 
 export default function UploadLocal() {
   const [assetName, setAssetName] = useState("");
-  const [file, setFile] = useState();
+  const [file, setFile] = useState("");
   const [assetURL, setAssetURL] = useState("");
   const [assetTUS, setAssetTUS] = useState("");
+  const [progress, setProgress] = useState(0);
+  const [fileLabel, setFileLabel] = useState(0);
 
   async function getUploadURL(e) {
     e.preventDefault();
@@ -31,9 +33,31 @@ export default function UploadLocal() {
     }
   }
 
+  // async function uploadAsset(e) {
+  //   e.preventDefault();
+  //   try {
+  //    const response = await fetch(`${assetURL}`, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "video/mp4",
+  //       },
+  //       body: file,
+  //     });
+
+  //     const data = await response.json();
+  //     console.log(data);
+
+  //     setAssetName("");
+  //     setFile("");
+  //     setAssetURL("");
+  //     setAssetTUS("");
+  //   } catch (error) {
+
+  //   }
+  // }
+
   async function uploadAsset(e) {
     e.preventDefault();
-    console.log(e);
     try {
       await fetch(`${assetURL}`, {
         method: "PUT",
@@ -42,36 +66,40 @@ export default function UploadLocal() {
         },
         body: file,
       });
-
+      console.log(file);
+      let loading = (file.size / 1000).toFixed(2);
       setAssetName("");
       setFile("");
       setAssetURL("");
       setAssetTUS("");
+      setProgress(loading)
     } catch (error) {
-      console.log(error);
+
     }
   }
+
+
 
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Uploading with Local Storage</h1>
-        <form method="POST" className={styles.card}>
-          <label htmlFor="asset">Asset Name</label>
-          <br />
-          <input
-            type="text"
-            value={assetName}
-            name="name"
-            required
-            onChange={(e) => setAssetName(e.target.value)}
-          />
-          <br />
-          <button onClick={getUploadURL}>Get Upload URL</button>
+      <form method="POST" className={styles.card}>
+        <label htmlFor="asset">Asset Name</label>
+        <br />
+        <input
+          type="text"
+          value={assetName}
+          name="name"
+          required
+          onChange={(e) => setAssetName(e.target.value)}
+        />
+        <br />
+        <button onClick={getUploadURL}>Get Upload URL</button>
       </form>
 
-      <h5 className={ styles.h5 }>Select Upload Method</h5>
-      
-      <div className={ styles.grid }>
+      <h5 className={styles.h5}>Select Upload Method</h5>
+
+      <div className={styles.grid}>
         <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
           <label htmlFor="url">Direct Upload </label>
           <br />
@@ -113,6 +141,17 @@ export default function UploadLocal() {
             required
             onChange={(e) => setFile(e.target.files[0])}
           />
+
+          <div className={styles.progressContainer} >
+            <progress
+              max="100"
+              value={ progress }
+            >
+                { progress }
+              </progress>
+              </div>
+
+          
           <button type="submit">Upload Asset</button>
         </form>
       </div>
