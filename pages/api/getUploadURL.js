@@ -2,10 +2,10 @@
 export default async function handler(req, res) {
   const { name } = req.body;
   try {
-    const response = await fetch(`https://livepeer.monster/api/asset/request-upload`, {
+    const response = await fetch(`https://livepeer.studio/api/asset/request-upload`, {
       method: "POST",
       headers: {
-        'Authorization': `Bearer ${process.env.STAGING_API_KEY}`,
+        'Authorization': `Bearer ${process.env.API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({

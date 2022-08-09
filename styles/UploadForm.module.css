@@ -133,6 +133,25 @@
   background-color: #245cd8;
 }
 
+.progressContainer {
+  height: 15px;
+  background-color: none;
+  border-radius: 5rem;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.progressBar::-webkit-progress-value {
+  background: #245cd8;
+  border-radius: 5rem;
+  height: 100%;
+  position: absolute;
+}
+
+
+
+
+
 .logo {
   height: 1em;
   margin-left: 0.5rem;
@@ -144,3 +163,4 @@
     flex-direction: column;
   }
 }
+
