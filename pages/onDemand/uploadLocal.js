@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import axios from 'axios';
 import styles from "../../styles/UploadForm.module.css";
 
 export default function UploadLocal() {
@@ -8,7 +9,6 @@ export default function UploadLocal() {
   const [assetURL, setAssetURL] = useState("");
   const [assetTUS, setAssetTUS] = useState("");
   const [progress, setProgress] = useState(0);
-  const [fileLabel, setFileLabel] = useState(0);
 
   async function getUploadURL(e) {
     e.preventDefault();
@@ -33,46 +33,29 @@ export default function UploadLocal() {
     }
   }
 
-  // async function uploadAsset(e) {
-  //   e.preventDefault();
-  //   try {
-  //    const response = await fetch(`${assetURL}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "video/mp4",
-  //       },
-  //       body: file,
-  //     });
-
-  //     const data = await response.json();
-  //     console.log(data);
-
-  //     setAssetName("");
-  //     setFile("");
-  //     setAssetURL("");
-  //     setAssetTUS("");
-  //   } catch (error) {
-
-  //   }
-  // }
 
   async function uploadAsset(e) {
+
     e.preventDefault();
+    const config = {
+      onUploadProgress(progressEvent) {
+        console.log(progressEvent);
+        const percentage = Math.round(100 * (progressEvent.loaded / progressEvent.total));
+        setProgress(percentage);
+      }
+    } 
     try {
-      await fetch(`${assetURL}`, {
-        method: "PUT",
+      await axios.put(`${assetURL}`, file, config, {
         headers: {
           "Content-Type": "video/mp4",
         },
         body: file,
       });
-      console.log(file);
-      let loading = (file.size / 1000).toFixed(2);
+
       setAssetName("");
       setFile("");
       setAssetURL("");
       setAssetTUS("");
-      setProgress(loading)
     } catch (error) {
 
     }
@@ -119,6 +102,7 @@ export default function UploadLocal() {
             required
             onChange={(e) => setFile(e.target.files[0])}
           />
+
           <button type="submit">Upload Asset</button>
         </form>
 
@@ -142,7 +126,8 @@ export default function UploadLocal() {
             onChange={(e) => setFile(e.target.files[0])}
           />
 
-          <div className={styles.progressContainer} >
+          <label htmlFor="progress">{ progress }%</label>
+          <div className={ styles.progressContainer } >
             <progress
               max="100"
               value={ progress }
