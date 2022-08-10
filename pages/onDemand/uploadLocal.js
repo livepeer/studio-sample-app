@@ -15,6 +15,8 @@ export default function UploadLocal() {
   // Set state of the uploading progress
   const [directProgress, setDirectProgress] = useState(0);
   const [resumeProgress, setResumeProgress] = useState(0);
+  const [uploadMethod, setUploadMethod] = useState();
+
 
   async function getUploadURL(e) {
     e.preventDefault();
@@ -117,14 +119,48 @@ export default function UploadLocal() {
           required
           onChange={(e) => setAssetName(e.target.value)}
         />
-        <br />
-        <button onClick={getUploadURL}>Get Upload URL</button>
+        <p>{assetURL || assetTUS ? "URL Available": null}</p>
+        <button onClick={ getUploadURL }>Get Upload URL</button>
       </form>
-      {/* Form with provided URL to upload file */}
-      <h5 className={styles.h5}>Select Upload Method</h5>
 
+
+      
+      <form onSubmit={ uploadMethod === assetURL ? uploadDirectAsset: uploadResumableAsset } method="PUT" className={styles.card}>
+      <h5 className={styles.h5}>Select Upload Method</h5>
+        <select
+          onChange={(e) => setUploadMethod(e.target.value)}
+        >
+          <option disabled selected value>Select an option</option>
+          <option value={assetURL}>Direct Upload</option>
+          <option value={assetTUS}>Resumable Upload</option>
+        </select>
+
+        <input
+            type="file"
+            name="assetFile"
+            accept="video/mp4"
+            required
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+          
+        <br />
+        
+        <label htmlFor="progress">{ uploadMethod === assetURL ? directProgress : resumeProgress }%</label>
+          <div className={styles.progressContainer}>
+            <progress max="100" value={uploadMethod === assetURL ? directProgress : resumeProgress }>
+             {uploadMethod}
+          </progress>
+        </div>
+        <button type="submit">Upload Asset</button>
+      </form>
+    
+
+
+
+    {/* Separate forms for each upload method */}
+      
+      {/* <h5 className={styles.h5}>Select Upload Method</h5>
       <div className={styles.grid}>
-        {/* Direct upload form */}
         <form onSubmit={uploadDirectAsset} method="PUT" className={styles.card}>
           <label htmlFor="url">Direct Upload </label>
           <br />
@@ -145,7 +181,8 @@ export default function UploadLocal() {
             onChange={(e) => setFile(e.target.files[0])}
           />
 
-           {/* Progress bar of uploading asset */}
+
+          
            <label htmlFor="progress">{directProgress}%</label>
           <div className={styles.progressContainer}>
             <progress max="100" value={directProgress}>
@@ -155,7 +192,8 @@ export default function UploadLocal() {
 
           <button type="submit">Upload Asset</button>
         </form>
-        {/* Reseumable upload form */}
+
+        
         <form onSubmit={uploadResumableAsset} method="PUT" className={styles.card}>
           <label htmlFor="url">Resumable Upload </label>
           <br />
@@ -175,7 +213,7 @@ export default function UploadLocal() {
             required
             onChange={(e) => setFile(e.target.files[0])}
           />
-          {/* Progress bar of uploading asset */}
+
           <label htmlFor="progress">{resumeProgress}%</label>
           <div className={styles.progressContainer}>
             <progress max="100" value={resumeProgress}>
@@ -185,7 +223,7 @@ export default function UploadLocal() {
 
           <button type="submit">Upload Asset</button>
         </form>
-      </div>
+      </div> */}
 
       <h3>
         <Link href="/onDemand">
