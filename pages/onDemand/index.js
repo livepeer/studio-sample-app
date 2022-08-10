@@ -58,7 +58,6 @@ export default function Home() {
               <p>Update an existing stored asset</p>
             </a>
           </Link>
-<<<<<<< HEAD
 
 
           <Link href="onDemand/deleteAsset">
@@ -71,8 +70,6 @@ export default function Home() {
          
 
           
-=======
->>>>>>> OnDemand/List-Asset
         </div>
         <h3>
           <Link href="/">
