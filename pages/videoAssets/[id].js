@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import logo from "../../public/studioLogo.png";
 import styles from "../../styles/Asset.module.css";
 
+// Using 'getStaticPaths' to pre-render a list of paths for dynamic routes
 export async function getStaticPaths() {
   const res = await fetch(`https://livepeer.studio/api/asset`, {
     method: "GET",
@@ -11,8 +12,11 @@ export async function getStaticPaths() {
       "Content-Type": "application/json",
     },
   });
+ // Convert json response into JS object
   const data = await res.json();
 
+  // Iterating through all existing assets, getting each Id 
+  // and assign as params be available to passed
   return {
     paths: data.map((data) => ({
       params: { id: data.id.toString() },
@@ -21,6 +25,8 @@ export async function getStaticPaths() {
   };
 }
 
+// Calling the api from server side using 'getServerSideProps' and passing in existing 
+// routes from 'getStaticPaths' for dynamic routing
 export async function getStaticProps({ params }) {
   const res = await fetch(`https://livepeer.studio/api/asset/${params.id}`, {
     method: "GET",
@@ -29,8 +35,9 @@ export async function getStaticProps({ params }) {
       "Content-Type": "application/json",
     },
   });
+  // Convert json response into JS object
   const data = await res.json();
-
+  // Assign api response as props to be available to passed
   return {
     props: {
       assets: data,
@@ -38,7 +45,9 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function Details({ assets }) {
+// Function to display each asset with their own information
+export default function AssetDetails({ assets }) {
+  // Accessing the 'query' from the router object to passing in the id of each asset for dynamic routing
   const {
     query: { id },
   } = useRouter();
@@ -47,7 +56,8 @@ export default function Details({ assets }) {
     <div>
       <div className={styles.card} key={id}>
         {assets.status.phase === "ready" ? (
-          <div className={styles.videoInfo}>
+          <div className={ styles.videoInfo }>
+            {/* Display embedded Video Player if it exists, otherwise show an image */}
             <iframe
               className={styles.iframe}
               src={`https://lvpr.tv?v=${assets.playbackId}`}
@@ -58,6 +68,7 @@ export default function Details({ assets }) {
               sandbox="allow-scripts"
             ></iframe>
 
+            {/* Code for embedding the video */}
             <code className={styles.embedInfo}>
               <p>Embed Player Code</p>
               <br />
@@ -76,6 +87,7 @@ export default function Details({ assets }) {
           <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
         )}
 
+        {/* Display information about the asset */}
         <div className={styles.cardbody}>
           <h2> Name: {assets.name} </h2>
           <p>Status:</p>
