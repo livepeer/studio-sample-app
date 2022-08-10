@@ -2,8 +2,9 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "../../styles/Form.module.css";
 
-
+// Function that creates an asset with a downloadable URL
 export default function UploadURL() {
+  // Set the state name and URL provided by the user
   const [formState, setFormState] = useState({
     name: "",
     url: ""
@@ -12,6 +13,7 @@ export default function UploadURL() {
 
   async function uploadAsset(e) {
     e.preventDefault()
+    // Calling the api from backend with the path created in api directory
     try {
       const response = await fetch('/api/uploadForm', {
         method: "POST",
@@ -28,6 +30,7 @@ export default function UploadURL() {
         name: "",
         url: ""
       })
+      // Convert json response into JS object
       const data = await response.json()
       // console.log(data);
     } catch (e) {
@@ -37,7 +40,8 @@ export default function UploadURL() {
 
 
   return (
-    <div className={styles.main}>
+    <div className={ styles.main }>
+      {/* Uploading asset form */}
       <h1 className={styles.title}>Uploading with URL</h1>
       <form onSubmit={uploadAsset} method="POST" className={styles.card}>
         <label htmlFor="asset">Asset Name</label>

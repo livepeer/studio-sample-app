@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import logo from "../../public/studioLogo.png"
 import styles from "../../styles/Form.module.css";
 
-
-export default function UploadURL() {
+// Function that updates an existing asset based on the update form
+export default function Update() {
+  // Setting state from the update form
   const [formState, setFormState] = useState({
     assetId: "",
     name: "",
@@ -17,6 +16,7 @@ export default function UploadURL() {
   async function updateAsset(e) {
     e.preventDefault()
     try {
+      // Calling the api from backend with the path created in api directory
       const response = await fetch('/api/update', {
         method: "PATCH",
         headers: {
@@ -37,15 +37,18 @@ export default function UploadURL() {
         storage: "",
         meta: ""
       })
+      // Convert json response into JS object
       const data = await response.json()
-      console.log(data);
-    } catch (e) {
+      // console.log(data);
+    } catch (error) {
+      console.error(error);
     }
   }
 
 
   return (
-    <div className={styles.main}>
+    <div className={ styles.main }>
+      {/* Form for updating an existing asset */}
       <h1 className={styles.title}>Updating Asset</h1>
       <form onSubmit={ updateAsset } method="PATCH" className={ styles.card }>
         
@@ -58,7 +61,7 @@ export default function UploadURL() {
           onChange={(e) => setFormState({ ...formState, assetId: e.target.value })}
         />
 
-        <label htmlFor="asset">Asset Name</label>
+        <label htmlFor="asset">Update Name</label>
         <input
           type="text"
           value={formState.name}
