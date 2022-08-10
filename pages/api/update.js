@@ -1,8 +1,9 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function handler(req, res) {
   const { assetId, name, storage, meta } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   try {
+    // Calling api and passing in the properties of the asset from the 'update' form to be updated
     const response = await fetch(`https://livepeer.studio/api/asset/${assetId}`, {
       method: "PATCH",
       headers: {
@@ -16,10 +17,11 @@ export default async function handler(req, res) {
       }),
     });
 
+    // Convert json response into JS object
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     res.status(200).json(data);
   } catch (error) {
-    res.status(400).send("error");
+    console.error(error);
   }
 }

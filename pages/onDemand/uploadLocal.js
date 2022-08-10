@@ -1,18 +1,23 @@
 import { useState } from "react";
 import Link from "next/link";
-import axios from 'axios';
+import axios from "axios";
 import styles from "../../styles/UploadForm.module.css";
 
+// Function that creates an asset with uploading a file
 export default function UploadLocal() {
+  // Set the state name and file provided by the user
   const [assetName, setAssetName] = useState("");
   const [file, setFile] = useState("");
+  // Set the state of the ulpoad URL created
   const [assetURL, setAssetURL] = useState("");
   const [assetTUS, setAssetTUS] = useState("");
+  // Set state of the uploading progress
   const [progress, setProgress] = useState(0);
 
   async function getUploadURL(e) {
     e.preventDefault();
     try {
+      // Calling the api from backend with the path created in api directory
       const response = await fetch("/api/getUploadURL", {
         method: "POST",
         headers: {
@@ -23,8 +28,9 @@ export default function UploadLocal() {
         }),
       });
 
+      // Convert json response into JS object
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       setAssetURL(data.url);
       setAssetTUS(data.tusEndpoint);
@@ -33,18 +39,18 @@ export default function UploadLocal() {
     }
   }
 
-
   async function uploadAsset(e) {
-
     e.preventDefault();
     const config = {
+      // Axios' onUploadProgress function to keep track of the file upload progress
       onUploadProgress(progressEvent) {
         console.log(progressEvent);
         const percentage = Math.round(100 * (progressEvent.loaded / progressEvent.total));
         setProgress(percentage);
-      }
-    } 
+      },
+    };
     try {
+      // Using axios to access their 'onUploadProgress' function
       await axios.put(`${assetURL}`, file, config, {
         headers: {
           "Content-Type": "video/mp4",
@@ -56,17 +62,14 @@ export default function UploadLocal() {
       setFile("");
       setAssetURL("");
       setAssetTUS("");
-    } catch (error) {
-
-    }
+    } catch (error) {}
   }
-
-
 
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Uploading with Local Storage</h1>
       <form method="POST" className={styles.card}>
+        {/* Form to get upload URL */}
         <label htmlFor="asset">Asset Name</label>
         <br />
         <input
@@ -79,10 +82,11 @@ export default function UploadLocal() {
         <br />
         <button onClick={getUploadURL}>Get Upload URL</button>
       </form>
-
+      {/* Form with provided URL to upload file */}
       <h5 className={styles.h5}>Select Upload Method</h5>
 
       <div className={styles.grid}>
+        {/* Direct upload form */}
         <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
           <label htmlFor="url">Direct Upload </label>
           <br />
@@ -105,7 +109,7 @@ export default function UploadLocal() {
 
           <button type="submit">Upload Asset</button>
         </form>
-
+        {/* Reseumable upload form */}
         <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
           <label htmlFor="url">Resumable Upload </label>
           <br />
@@ -125,18 +129,14 @@ export default function UploadLocal() {
             required
             onChange={(e) => setFile(e.target.files[0])}
           />
+          {/* Progress bar of uploading asset */}
+          <label htmlFor="progress">{progress}%</label>
+          <div className={styles.progressContainer}>
+            <progress max="100" value={progress}>
+              {progress}
+            </progress>
+          </div>
 
-          <label htmlFor="progress">{ progress }%</label>
-          <div className={ styles.progressContainer } >
-            <progress
-              max="100"
-              value={ progress }
-            >
-                { progress }
-              </progress>
-              </div>
-
-          
           <button type="submit">Upload Asset</button>
         </form>
       </div>

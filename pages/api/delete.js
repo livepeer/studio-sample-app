@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function handler(req, res) {
-  const assetId = req.body.assetId;
+  // Calling api and passing in the Id of the asset from the 'deleteAsset' form as the query
   try {
-    const response = await fetch(`https://livepeer.studio/api/asset/${assetId}`, {
+    const response = await fetch(`https://livepeer.studio/api/asset/${req.body.assetId}`, {
       method: "DELETE",
       headers: {
         'Authorization': `Bearer ${process.env.API_KEY}`,
@@ -10,10 +10,11 @@ export default async function handler(req, res) {
       },
     })
    
+    // Convert json response into JS object
     const data = await response.json();
-    console.log(data);
     res.status(204).json(data)
   } catch (error) {
+    console.error(error)
   }
   res.status(400).send("error")
 }
