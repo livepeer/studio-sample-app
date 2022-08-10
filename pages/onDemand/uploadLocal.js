@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import * as tus from "tus-js-client";
 import styles from "../../styles/UploadForm.module.css";
 
 // Function that creates an asset with uploading a file
@@ -71,29 +72,35 @@ export default function UploadLocal() {
   // Function with resumeable uploading
   async function uploadResumableAsset(e) {
     e.preventDefault();
-    const config = {
-      // Axios' onUploadProgress function to keep track of the file upload progress
-      onUploadProgress(progressEvent) {
-        console.log(progressEvent);
-        const percentage = Math.round(100 * (progressEvent.loaded / progressEvent.total));
-        setResumeProgress(percentage);
-      },
-    };
     try {
-      // Using axios to access their 'onUploadProgress' function
-      await axios.put(`${assetURL}`, file, config, {
-        headers: {
-          "Content-Type": "video/mp4",
+      // Using tus-js-client for resumable uploading
+      const upload = new tus.Upload(file, {
+        endpoint: assetTUS, // Using 'tusEndpoint' from generated url
+        metadata: {
+          filename: file.name,
+          filetype: "video/mp4",
         },
-        body: file,
+        uploadSize: file.size,
+        onError(err) {
+          console.error("Error uploading file:", err);
+        },
+        onProgress(bytesUploaded, bytesTotal) {
+          const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+          console.log("Uploaded " + percentage + "%");
+          setResumeProgress(percentage);
+        },
+        onSuccess() {
+          console.log("Upload finished:", upload.url);
+        },
       });
-
-      setAssetName("");
-      setFile("");
-      setAssetURL("");
+      const previousUploads = await upload.findPreviousUploads();
+      if (previousUploads.length > 0) {
+        upload.resumeFromPreviousUpload(previousUploads[0]);
+      }
+      upload.start();
     } catch (error) {
       console.error(error);
-    }
+     }
   }
 
   return (
@@ -137,6 +144,14 @@ export default function UploadLocal() {
             required
             onChange={(e) => setFile(e.target.files[0])}
           />
+
+           {/* Progress bar of uploading asset */}
+           <label htmlFor="progress">{directProgress}%</label>
+          <div className={styles.progressContainer}>
+            <progress max="100" value={directProgress}>
+              {directProgress}
+            </progress>
+          </div>
 
           <button type="submit">Upload Asset</button>
         </form>
