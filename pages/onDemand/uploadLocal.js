@@ -12,7 +12,8 @@ export default function UploadLocal() {
   const [assetURL, setAssetURL] = useState("");
   const [assetTUS, setAssetTUS] = useState("");
   // Set state of the uploading progress
-  const [progress, setProgress] = useState(0);
+  const [directProgress, setDirectProgress] = useState(0);
+  const [resumeProgress, setResumeProgress] = useState(0);
 
   async function getUploadURL(e) {
     e.preventDefault();
@@ -39,14 +40,15 @@ export default function UploadLocal() {
     }
   }
 
-  async function uploadAsset(e) {
+  // Function for uploading with direct url
+  async function uploadDirectAsset(e) {
     e.preventDefault();
     const config = {
       // Axios' onUploadProgress function to keep track of the file upload progress
       onUploadProgress(progressEvent) {
         console.log(progressEvent);
         const percentage = Math.round(100 * (progressEvent.loaded / progressEvent.total));
-        setProgress(percentage);
+        setDirectProgress(percentage);
       },
     };
     try {
@@ -61,8 +63,37 @@ export default function UploadLocal() {
       setAssetName("");
       setFile("");
       setAssetURL("");
-      setAssetTUS("");
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // Function with resumeable uploading
+  async function uploadResumableAsset(e) {
+    e.preventDefault();
+    const config = {
+      // Axios' onUploadProgress function to keep track of the file upload progress
+      onUploadProgress(progressEvent) {
+        console.log(progressEvent);
+        const percentage = Math.round(100 * (progressEvent.loaded / progressEvent.total));
+        setResumeProgress(percentage);
+      },
+    };
+    try {
+      // Using axios to access their 'onUploadProgress' function
+      await axios.put(`${assetURL}`, file, config, {
+        headers: {
+          "Content-Type": "video/mp4",
+        },
+        body: file,
+      });
+
+      setAssetName("");
+      setFile("");
+      setAssetURL("");
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -87,7 +118,7 @@ export default function UploadLocal() {
 
       <div className={styles.grid}>
         {/* Direct upload form */}
-        <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
+        <form onSubmit={uploadDirectAsset} method="PUT" className={styles.card}>
           <label htmlFor="url">Direct Upload </label>
           <br />
           <input
@@ -110,7 +141,7 @@ export default function UploadLocal() {
           <button type="submit">Upload Asset</button>
         </form>
         {/* Reseumable upload form */}
-        <form onSubmit={uploadAsset} method="PUT" className={styles.card}>
+        <form onSubmit={uploadResumableAsset} method="PUT" className={styles.card}>
           <label htmlFor="url">Resumable Upload </label>
           <br />
           <input
@@ -130,10 +161,10 @@ export default function UploadLocal() {
             onChange={(e) => setFile(e.target.files[0])}
           />
           {/* Progress bar of uploading asset */}
-          <label htmlFor="progress">{progress}%</label>
+          <label htmlFor="progress">{resumeProgress}%</label>
           <div className={styles.progressContainer}>
-            <progress max="100" value={progress}>
-              {progress}
+            <progress max="100" value={resumeProgress}>
+              {resumeProgress}
             </progress>
           </div>
 
