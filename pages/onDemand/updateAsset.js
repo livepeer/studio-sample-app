@@ -20,7 +20,7 @@ export default function Update() {
       const response = await fetch('/api/update', {
         method: "PATCH",
         headers: {
-          Authorization: `Bearer ${process.env.API_KEY}`,
+          Authorization: `Bearer 47518d26-23cc-4908-a1d2-a3e3901749c7`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({

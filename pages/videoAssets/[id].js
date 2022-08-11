@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const res = await fetch(`https://livepeer.studio/api/asset`, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${process.env.API_KEY}`,
+      Authorization: `Bearer 47518d26-23cc-4908-a1d2-a3e3901749c7`,
       "Content-Type": "application/json",
     },
   });
@@ -31,7 +31,7 @@ export async function getStaticProps({ params }) {
   const res = await fetch(`https://livepeer.studio/api/asset/${params.id}`, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${process.env.API_KEY}`,
+      Authorization: `Bearer 47518d26-23cc-4908-a1d2-a3e3901749c7`,
       "Content-Type": "application/json",
     },
   });
