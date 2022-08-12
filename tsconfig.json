@@ -103,7 +103,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/onDemand/listAssetId.tsx"  ],
+, "pages/onDemand/listAssetId.js"  ],
   "exclude": [
     "node_modules"
   ]
