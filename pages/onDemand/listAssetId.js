@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/studioLogo.png";
@@ -12,7 +12,7 @@ export default function ListAssetByID() {
   // Setting state for the asset
   const [getAsset, setGetAsset] = useState("");
 
-  async function fetchAsset(e: FormEvent) {
+  async function fetchAsset(e) {
     e.preventDefault();
     // Calling the api from backend with the path created in api directory
     const res = await fetch(`/api/asset/${assetId}`);
