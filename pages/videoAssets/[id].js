@@ -74,11 +74,11 @@ export default function AssetDetails({ assets }) {
               <br />
               {`<iframe>`}
               <br />
-              src={`https://lvpr.tv?v=${assets.playbackId}`}'
+              src={`https://lvpr.tv?v=${assets.playbackId}`}&apos;
               <br />
-              allow='autoplay; encrypted-media; picture-in-picture'
+              allow=&apos;autoplay; encrypted-media; picture-in-picture&apos;
               <br />
-              sandbox='allow-scripts'
+              sandbox=&apos;allow-scripts&apos;
               <br />
               {`</iframe>`}
             </code>
