@@ -12,9 +12,8 @@ export default async function handler(req, res) {
    
     // Convert json response into JS object
     const data = await response.json();
-    res.status(204).json(data)
+    return res.status(204).json(data)
   } catch (error) {
-    console.error(error)
+    res.status(400).send("error")
   }
-  res.status(400).send("error")
 }
