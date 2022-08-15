@@ -45,7 +45,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-// Function to display each asset with their own information
+// Function to display each asset with their own information 
 export default function AssetDetails({ assets }) {
   // Accessing the 'query' from the router object to passing in the id of each asset for dynamic routing
   const {
