@@ -10,8 +10,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 260px; 
-  font-size: 28px; 
+  margin-left: 260px;
+  font-size: 28px;
   padding: 0px 10px;
 }
 
@@ -45,7 +45,7 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .title,
@@ -69,11 +69,14 @@
 }
 
 .grid {
-  display: flex;
-  align-items: center;
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
 }
 
 .card {
@@ -85,7 +88,7 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: 350px;
 }
 
 .card:hover,
@@ -99,19 +102,20 @@
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
 }
+
+.h5 {
+  margin: 1rem;
+  font-size: 1.5rem;
+}
+
 .card label {
   margin: 0 0 1rem 0;
   font-size: 1rem;
 }
 .card input {
   margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card textarea {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-  width: 260px
+  font-size: .75rem;
+  width: 250px;
 }
 
 .card p {
@@ -121,23 +125,32 @@
 }
 .card button {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1.5;
-  color:#eaeaea;
+  color: #eaeaea;
   border-radius: 5px;
   border: none;
   background-color: #245cd8;
 }
 
-.card .deleteButton {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  color:#eaeaea;
-  border-radius: 5px;
-  border: none;
-  background-color: #cc2626;
+.progressContainer {
+  height: 15px;
+  background-color: none;
+  border-radius: 5rem;
+  position: relative;
+  margin-bottom: 10px;
 }
+
+.progressBar::-webkit-progress-value {
+  background: #245cd8;
+  border-radius: 5rem;
+  height: 100%;
+  position: absolute;
+}
+
+
+
+
 
 .logo {
   height: 1em;
@@ -150,3 +163,4 @@
     flex-direction: column;
   }
 }
+

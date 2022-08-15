@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import logo from "../../public/studioLogo.png";
 import styles from "../../styles/Asset.module.css";
 
-// Calling the api from server side using 'getServerSideProps' getting params for dynamic site generation
-export async function getServerSideProps({ params }) {
+// Calling the api from server side using 'getServerSideProps' and passing in existing 
+// routes from 'getStaticPaths' for dynamic routing
+export async function getStaticProps({ params }) {
   const res = await fetch(`https://livepeer.studio/api/asset/${params.id}`, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${process.env.API_KEY}`,
+      Authorization: `Bearer 47518d26-23cc-4908-a1d2-a3e3901749c7`,
       "Content-Type": "application/json",
     },
   });
