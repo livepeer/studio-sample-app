@@ -17,19 +17,19 @@ export default function Update() {
     e.preventDefault()
     try {
       // Calling the api from backend with the path created in api directory
-      const response = await fetch('/api/update', {
+      const response = await fetch("/api/update", {
         method: "PATCH",
         headers: {
-          Authorization: `Bearer 47518d26-23cc-4908-a1d2-a3e3901749c7`,
-          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.API_KEY}`,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           assetId: formState.assetId,
           name: formState.name,
           storage: formState.storage ? JSON.parse(formState.storage) : undefined,
-          meta: formState.meta ? JSON.parse(formState.meta) : undefined
-        })
-      })
+          meta: formState.meta ? JSON.parse(formState.meta) : undefined,
+        }),
+      });
       
       setFormState({
         assetId: "",

@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     const response = await fetch(`https://livepeer.studio/api/asset/import`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer 47518d26-23cc-4908-a1d2-a3e3901749c7`,
+        Authorization: `Bearer ${process.env.API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

@@ -6,13 +6,13 @@ export default async function handler(req, res) {
     const response = await fetch(`https://livepeer.studio/api/asset/request-upload`, {
       method: "POST",
       headers: {
-        'Authorization': `Bearer 47518d26-23cc-4908-a1d2-a3e3901749c7`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.API_KEY}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name
-      })
-    })
+        name,
+      }),
+    });
    
      // Convert json response into JS object
     const data = await response.json();
