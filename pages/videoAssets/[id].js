@@ -5,7 +5,7 @@ import styles from "../../styles/Asset.module.css";
 
 // Calling the api from server side using 'getServerSideProps' and passing in existing 
 // routes from 'getStaticPaths' for dynamic routing
-export async function getServerSide({ params }) {
+export async function getServerSideProps({ params }) {
   const res = await fetch(`https://livepeer.studio/api/asset/${params.id}`, {
     method: "GET",
     headers: {
