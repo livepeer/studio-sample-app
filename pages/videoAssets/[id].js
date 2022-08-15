@@ -3,9 +3,31 @@ import { useRouter } from "next/router";
 import logo from "../../public/studioLogo.png";
 import styles from "../../styles/Asset.module.css";
 
+// Using 'getStaticPaths' to pre-render a list of paths for dynamic routes
+export async function getStaticPaths() {
+  const res = await fetch(`https://livepeer.studio/api/asset`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer 47518d26-23cc-4908-a1d2-a3e3901749c7`,
+      "Content-Type": "application/json",
+    },
+  });
+ // Convert json response into JS object
+  const data = await res.json();
+
+  // Iterating through all existing assets, getting each Id 
+  // and assign as params be available to passed
+  return {
+    paths: data.map((data) => ({
+      params: { id: data.id.toString() },
+    })),
+    fallback: false,
+  };
+}
+
 // Calling the api from server side using 'getServerSideProps' and passing in existing 
 // routes from 'getStaticPaths' for dynamic routing
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const res = await fetch(`https://livepeer.studio/api/asset/${params.id}`, {
     method: "GET",
     headers: {
@@ -39,7 +61,7 @@ export default function AssetDetails({ assets }) {
             <iframe
               className={styles.iframe}
               src={`https://lvpr.tv?v=${assets.playbackId}`}
-              frameBorder="0"
+              frameForder="0"
               height="200px"
               allowFullScreen
               allow="autoplay; encrypted-media; picture-in-picture"
