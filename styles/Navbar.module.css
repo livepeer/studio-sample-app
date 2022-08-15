@@ -18,7 +18,7 @@
 .nav ul {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   list-style: none;
   padding: 0;
 }
