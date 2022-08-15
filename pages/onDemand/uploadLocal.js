@@ -9,7 +9,7 @@ export default function UploadLocal() {
   // Set the state name and file provided by the user
   const [assetName, setAssetName] = useState("");
   const [file, setFile] = useState("");
-  // Set the state of the ulpoad URL created
+  // Set the state of the ulpoad URL create
   const [assetURL, setAssetURL] = useState("");
   const [assetTUS, setAssetTUS] = useState("");
   // Set state of the uploading progress
