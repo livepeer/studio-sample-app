@@ -9,7 +9,7 @@ export async function getServerSideProps({ params }) {
   const res = await fetch(`https://livepeer.studio/api/asset/${params.id}`, {
     method: "GET",
     headers: {
-      Authorization: `Bearer 47518d26-23cc-4908-a1d2-a3e3901749c7`,
+      Authorization: `Bearer ${process.env.API_KEY}`,
       "Content-Type": "application/json",
     },
   });
