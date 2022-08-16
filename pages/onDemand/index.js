@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import styles from "../../styles/Home.module.css";
+import styles from "../../styles/OnDemand.module.css";
 
 export default function Home() {
   return (
