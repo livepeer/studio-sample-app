@@ -9,14 +9,13 @@ export default function UploadLocal() {
   // Set the state name and file provided by the user
   const [assetName, setAssetName] = useState("");
   const [file, setFile] = useState("");
-  // Set the state of the ulpoad URL created
+  // Set the state of the ulpoad URL create
   const [assetURL, setAssetURL] = useState("");
   const [assetTUS, setAssetTUS] = useState("");
   // Set state of the uploading progress
   const [directProgress, setDirectProgress] = useState(0);
   const [resumeProgress, setResumeProgress] = useState(0);
   const [uploadMethod, setUploadMethod] = useState();
-
 
   async function getUploadURL(e) {
     e.preventDefault();
@@ -102,7 +101,7 @@ export default function UploadLocal() {
       upload.start();
     } catch (error) {
       console.error(error);
-     }
+    }
   }
 
   return (
@@ -113,52 +112,57 @@ export default function UploadLocal() {
         <label htmlFor="asset">Asset Name</label>
         <br />
         <input
+          className="border rounded-md text-base mx-2"
           type="text"
           value={assetName}
           name="name"
           required
           onChange={(e) => setAssetName(e.target.value)}
         />
-        <p>{assetURL || assetTUS ? "URL Available": null}</p>
-        <button onClick={ getUploadURL }>Get Upload URL</button>
+        <br/>
+        <button onClick={getUploadURL}>Get Upload URL</button>
       </form>
-
-
-      
-      <form onSubmit={ uploadMethod === assetURL ? uploadDirectAsset: uploadResumableAsset } method="PUT" className={styles.card}>
-      <h5 className={styles.h5}>Select Upload Method</h5>
-        <select
-          onChange={(e) => setUploadMethod(e.target.value)}
+      {assetURL || assetTUS ? (
+        <form
+          onSubmit={uploadMethod === assetURL ? uploadDirectAsset : uploadResumableAsset}
+          method="PUT"
+          className={styles.card}
         >
-          <option disabled selected value>Select an option</option>
-          <option value={assetURL}>Direct Upload</option>
-          <option value={assetTUS}>Resumable Upload</option>
-        </select>
-
-        <input
+          <h5 className={styles.h5}>Select Upload Method</h5>
+          <select
+            className="border rounded-md text-base mx-2"
+            onChange={(e) => setUploadMethod(e.target.value)}
+          >
+            <option disabled selected value>
+              Select an option
+            </option>
+            <option value={assetURL}>Direct Upload</option>
+            <option value={assetTUS}>Resumable Upload</option>
+          </select>
+          <br />
+          <input
             type="file"
             name="assetFile"
             accept="video/mp4"
             required
             onChange={(e) => setFile(e.target.files[0])}
           />
-          
-        <br />
-        
-        <label htmlFor="progress">{ uploadMethod === assetURL ? directProgress : resumeProgress }%</label>
+
+          <br />
+
+          <label htmlFor="progress">
+            {uploadMethod === assetURL ? directProgress : resumeProgress}%
+          </label>
           <div className={styles.progressContainer}>
-            <progress max="100" value={uploadMethod === assetURL ? directProgress : resumeProgress }>
-             {uploadMethod}
-          </progress>
-        </div>
-        <button type="submit">Upload Asset</button>
-      </form>
-    
+            <progress max="100" value={uploadMethod === assetURL ? directProgress : resumeProgress}>
+              {uploadMethod}
+            </progress>
+          </div>
+          <button type="submit">Upload Asset</button>
+        </form>
+      ) : null}
+      {/* Separate forms for each upload method */}
 
-
-
-    {/* Separate forms for each upload method */}
-      
       {/* <h5 className={styles.h5}>Select Upload Method</h5>
       <div className={styles.grid}>
         <form onSubmit={uploadDirectAsset} method="PUT" className={styles.card}>

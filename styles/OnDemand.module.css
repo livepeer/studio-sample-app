@@ -1,10 +1,7 @@
-.container {
-  padding: 0 2rem;
-}
 
 
 .main {
-  min-height: 50vh;
+  min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
   display: flex;
@@ -24,16 +21,15 @@
 .title a:hover,
 .title a:focus,
 .title a:active {
-  text-decoration: underline;
 }
 
 .title {
   @apply 
-  underline 
   m-auto
   leading-5
   text-5xl
   font-sans
+  text-blue-600
 }
 
 .title,
@@ -63,10 +59,11 @@
  grid-template-columns: repeat(4, 1fr);
  grid-gap: 10px;
 }
+
 .card {
   @apply
   shadow-xl
-  m-6
+  m-8
   p-5
   border-2
   rounded-md
@@ -77,13 +74,15 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #245cd8;
-  border-color: #245cd8;
+  @apply
+  text-blue-700
+  border-blue-700
 }
 
 .card h2 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
+  text-decoration: underline;
 }
 
 .card p {

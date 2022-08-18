@@ -82,26 +82,62 @@
 }
 
 .card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: fit content;
+ @apply
+  shadow-xl
+  m-6
+  p-5
+  border-2
+  rounded-md
+  border-solid
+  grid
+  grid-cols-2
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #245cd8;
-  border-color: #245cd8;
+@apply
+  text-blue-700
+  border-blue-700
+}
+
+
+.embedInfo {
+@apply
+  shadow-xl
+  m-6
+  p-5
+  border-2
+  rounded-md
+  border-solid
+  text-start
+  w-full
+}
+
+.iframe {
+  @apply
+  shadow-xl
+  m-6
+  p-5
+  border-2
+  rounded-md
+  border-solid
+  w-full
+}
+
+.cardbody {
+  @apply
+  shadow-xl
+  m-6
+  p-5
+  border-2
+  rounded-md
+  border-solid
+  text-start
 }
 
 .card h2 {
-  margin: 0 0 1rem 0;
+  margin: 1rem 0 1rem 0;
   font-size: 1.5rem;
 }
 
@@ -110,9 +146,10 @@
   font-size: 1.25rem;
   line-height: 1.5;
   font-weight: bold;
+  text-align: start
 }
 .url:hover {
-  color:#5f9612;
+  color:#22c55e;
   margin: 0;
 }
 
@@ -120,14 +157,14 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
-  color:#5f9612;
+  color:#22c55e;
 }
 
 .failed  {
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
-  color: red;
+  color: #ef4444;
 }
 
 .logo {

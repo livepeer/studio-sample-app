@@ -11,7 +11,7 @@ export default function Delete() {
     e.preventDefault();
     // Calling the api from the backend with the path created in teh api directory
     try {
-       await fetch("/api/delete", {
+      await fetch("/api/delete", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -34,6 +34,7 @@ export default function Delete() {
       <form onSubmit={deleteAsset} method="DELETE" className={styles.card}>
         <label htmlFor="asset">Asset ID</label>
         <input
+          className="border rounded-md text-base mx-2 "
           type="text"
           value={assetId}
           name="assetId"

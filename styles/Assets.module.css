@@ -4,32 +4,16 @@
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  margin-left: 260px; 
   font-size: 28px; 
   padding: 0px 10px;
+  margin: 50px
 }
 
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
 
 .title a {
   color: #245cd8;
@@ -43,14 +27,18 @@
 }
 
 .title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+  @apply 
+  my-10
+  leading-5
+  text-5xl
+  font-sans
+  text-blue-500
 }
 
 .title,
 .description {
-  text-align: center;
+  @apply
+  text-center
 }
 
 .description {
@@ -69,61 +57,39 @@
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 5px;
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ grid-gap: 5px;
 }
 
 .card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  @apply
+  shadow-xl
+  m-6
+  p-5
+  border-2
+  rounded-md
+  border-solid
+  text-center
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #245cd8;
-  border-color: #245cd8;
+  @apply
+  text-blue-700
+  border-blue-700
 }
 
 .card h2 {
   margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
-.card label {
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
-}
-.card input {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
+
 
 .card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
-.card button {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  color:#eaeaea;
-  border-radius: 5px;
-  border: none;
-  background-color: #245cd8;
-}
-
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 @media (max-width: 600px) {
