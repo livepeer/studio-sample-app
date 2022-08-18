@@ -25,7 +25,7 @@
 
 .title {
   @apply 
-  m-auto
+  m-5
   leading-5
   text-5xl
   font-sans
