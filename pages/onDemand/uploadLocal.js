@@ -230,11 +230,6 @@ export default function UploadLocal() {
         </form>
       </div> */}
 
-      <h3>
-        <Link href="/onDemand">
-          <a>&larr; Back to On Demand Page </a>
-        </Link>
-      </h3>
     </div>
   );
 }

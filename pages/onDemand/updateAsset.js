@@ -94,12 +94,6 @@ export default function Update() {
         <br />
         <button type="submit">Upload Asset</button>
       </form>
-
-      <h3>
-        <Link href="/onDemand">
-          <a>&larr; Back to On Demand Page </a>
-        </Link>
-      </h3>
     </div>
   );
 }

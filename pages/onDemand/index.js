@@ -66,11 +66,6 @@ export default function Home() {
             </a>
           </Link>
         </div>
-        <h3>
-          <Link href="/">
-            <a>&larr; Back to Home Page </a>
-          </Link>
-        </h3>
       </main>
 
       <footer className={styles.footer}></footer>
