@@ -47,48 +47,54 @@ export default function Update() {
 
 
   return (
-    <div className={ styles.main }>
+    <div className={styles.main}>
       {/* Form for updating an existing asset */}
       <h1 className={styles.title}>Updating Asset</h1>
-      <form onSubmit={ updateAsset } method="PATCH" className={ styles.card }>
-        
-      <label htmlFor="asset">Asset ID</label>
+      <form onSubmit={updateAsset} method="PATCH" className={styles.card}>
+        <label htmlFor="asset">Asset ID</label>
+        <br />
         <input
+          className="border rounded-md text-base mx-2"
           type="text"
           value={formState.assetId}
           name="assetId"
           required
           onChange={(e) => setFormState({ ...formState, assetId: e.target.value })}
         />
-
+        <br />
         <label htmlFor="asset">Update Name</label>
+        <br />
         <input
+          className="border rounded-md text-base mx-2"
           type="text"
           value={formState.name}
           name="name"
           onChange={(e) => setFormState({ ...formState, name: e.target.value })}
         />
-
+        <br />
         <label htmlFor="url">Storage </label>
+        <br />
         <textarea
+          className="border rounded-md text-base mx-2"
           type="text"
           value={formState.storage}
           name="storage"
           onChange={(e) => setFormState({ ...formState, storage: e.target.value })}
         />
-
+        <br />
         <label htmlFor="url">Metadata </label>
+        <br />
         <textarea
+          className="border rounded-md text-base mx-2"
           type="text"
           value={formState.meta}
           name="meta"
           onChange={(e) => setFormState({ ...formState, meta: e.target.value })}
         />
+        <br />
         <button type="submit">Upload Asset</button>
       </form>
 
-      
-      
       <h3>
         <Link href="/onDemand">
           <a>&larr; Back to On Demand Page </a>

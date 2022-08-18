@@ -113,52 +113,60 @@ export default function UploadLocal() {
         <label htmlFor="asset">Asset Name</label>
         <br />
         <input
+          className="border rounded-md text-base mx-2"
           type="text"
           value={assetName}
           name="name"
           required
           onChange={(e) => setAssetName(e.target.value)}
         />
-        <p>{assetURL || assetTUS ? "URL Available": null}</p>
-        <button onClick={ getUploadURL }>Get Upload URL</button>
+        <p>{assetURL || assetTUS ? "URL Available" : null}</p>
+        <button onClick={getUploadURL}>Get Upload URL</button>
       </form>
 
-
-      
-      <form onSubmit={ uploadMethod === assetURL ? uploadDirectAsset: uploadResumableAsset } method="PUT" className={styles.card}>
-      <h5 className={styles.h5}>Select Upload Method</h5>
+      <form
+        onSubmit={uploadMethod === assetURL ? uploadDirectAsset : uploadResumableAsset}
+        method="PUT"
+        className={styles.card}
+      >
+        <h5 className={styles.h5}>Select Upload Method</h5>
         <select
+          className="border rounded-md text-base mx-2"
           onChange={(e) => setUploadMethod(e.target.value)}
         >
-          <option disabled selected value>Select an option</option>
+          <option disabled selected value>
+            Select an option
+          </option>
           <option value={assetURL}>Direct Upload</option>
           <option value={assetTUS}>Resumable Upload</option>
         </select>
-
-        <input
-            type="file"
-            name="assetFile"
-            accept="video/mp4"
-            required
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          
         <br />
-        
-        <label htmlFor="progress">{ uploadMethod === assetURL ? directProgress : resumeProgress }%</label>
-          <div className={styles.progressContainer}>
-            <progress max="100" value={uploadMethod === assetURL ? directProgress : resumeProgress }>
-             {uploadMethod}
+        <input
+          type="file"
+          name="assetFile"
+          accept="video/mp4"
+          required
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+
+        <br />
+
+        <label htmlFor="progress">
+          {uploadMethod === assetURL ? directProgress : resumeProgress}%
+        </label>
+        <div className={styles.progressContainer}>
+          <progress
+            max="100"
+            value={uploadMethod === assetURL ? directProgress : resumeProgress}
+          >
+            {uploadMethod}
           </progress>
         </div>
         <button type="submit">Upload Asset</button>
       </form>
-    
 
+      {/* Separate forms for each upload method */}
 
-
-    {/* Separate forms for each upload method */}
-      
       {/* <h5 className={styles.h5}>Select Upload Method</h5>
       <div className={styles.grid}>
         <form onSubmit={uploadDirectAsset} method="PUT" className={styles.card}>
