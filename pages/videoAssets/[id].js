@@ -35,32 +35,34 @@ export default function AssetDetails({ assets }) {
     <div>
       <div className={styles.card} key={id}>
         {assets.status.phase === "ready" ? (
-          <div className={ styles.videoInfo }>
+          <div>
             {/* Display embedded Video Player if it exists, otherwise show an image */}
             <iframe
               className={styles.iframe}
               src={`https://lvpr.tv?v=${assets.playbackId}`}
               frameForder="0"
-              height="200px"
+              height="300px"
               allowFullScreen
               allow="autoplay; encrypted-media; picture-in-picture"
               sandbox="allow-scripts"
             ></iframe>
 
             {/* Code for embedding the video */}
-            <code className={styles.embedInfo}>
-              <p>Embed Player Code</p>
-              <br />
-              {`<iframe>`}
-              <br />
-              src={`https://lvpr.tv?v=${assets.playbackId}`}&apos;
-              <br />
-              allow=&apos;autoplay; encrypted-media; picture-in-picture&apos;
-              <br />
-              sandbox=&apos;allow-scripts&apos;
-              <br />
-              {`</iframe>`}
-            </code>
+            <div className={styles.embedInfo}>
+              <code>
+                <p>Embed Player Code</p>
+                <br />
+                {`<iframe>`}
+                <br />
+                src={`https://lvpr.tv?v=${assets.playbackId}`}&apos;
+                <br />
+                allow=&apos;autoplay; encrypted-media; picture-in-picture&apos;
+                <br />
+                sandbox=&apos;allow-scripts&apos;
+                <br />
+                {`</iframe>`}
+              </code>
+            </div>
           </div>
         ) : (
           <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />

@@ -7,53 +7,54 @@ export default function UploadURL() {
   // Set the state name and URL provided by the user
   const [formState, setFormState] = useState({
     name: "",
-    url: ""
+    url: "",
   });
 
-
   async function uploadAsset(e) {
-    e.preventDefault()
+    e.preventDefault();
     // Calling the api from backend with the path created in api directory
     try {
-      const response = await fetch('/api/uploadForm', {
+      const response = await fetch("/api/uploadForm", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formState.name,
-          url: formState.url
-        })
-      })
-      
+          url: formState.url,
+        }),
+      });
+
       setFormState({
         name: "",
-        url: ""
-      })
+        url: "",
+      });
       // Convert json response into JS object
-      const data = await response.json()
+      const data = await response.json();
       // console.log(data);
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 
-
   return (
-    <div className={ styles.main }>
+    <div className={styles.main}>
       {/* Uploading asset form */}
       <h1 className={styles.title}>Uploading with URL</h1>
       <form onSubmit={uploadAsset} method="POST" className={styles.card}>
-        <label htmlFor="asset">Asset Name</label>
+        <label htmlFor="asset">Asset Name: </label>
         <input
+          className="border rounded-md text-base mx-2"
           type="text"
           value={formState.name}
           name="name"
           required
           onChange={(e) => setFormState({ ...formState, name: e.target.value })}
         />
-        <label htmlFor="url">Asset URL </label>
+        <br />
+        <label htmlFor="url">Asset URL: </label>
         <input
+          className="border rounded-md text-base mx-2"
           type="url"
           value={formState.url}
           name="url"
@@ -61,14 +62,9 @@ export default function UploadURL() {
           pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
           onChange={(e) => setFormState({ ...formState, url: e.target.value })}
         />
+        <br />
         <button type="submit">Upload Asset</button>
       </form>
-
-      <h3>
-        <Link href="/onDemand">
-          <a>&larr; Back to On Demand Page </a>
-        </Link>
-      </h3>
     </div>
   );
 }

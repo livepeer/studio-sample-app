@@ -34,6 +34,7 @@ export default function Delete() {
       <form onSubmit={deleteAsset} method="DELETE" className={styles.card}>
         <label htmlFor="asset">Asset ID</label>
         <input
+          className="border rounded-md text-base mx-2 "
           type="text"
           value={assetId}
           name="assetId"

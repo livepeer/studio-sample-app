@@ -30,15 +30,16 @@ export default function ListAssetByID() {
       {/* Form for getting the asset by Id */}
       <h1 className={styles.title}>Get Assets By Id</h1>
       <form onSubmit={fetchAsset} method="GET" className={styles.card}>
-        <label htmlFor="asset">Asset ID: </label>
+        <label htmlFor="asset" className="text-base">Asset ID: </label>
         <input
+          className="border rounded-md text-base mx-2"
           type="search"
           name="query"
           value={assetId}
           required
           onChange={(e) => setAssetId(e.target.value)}
         />
-        <button type="submit">Get Asset</button>
+        <button type="submit" className="m-0  rounded-md p-1 bg-blue-600 hover:bg-blue-400 text-base text-white">Get Asset</button>
       </form>
 
       {/* Displays the asset card if it exists */}
@@ -46,18 +47,12 @@ export default function ListAssetByID() {
         <div className={styles.card} key={getAsset.id}>
           <Link href={`/videoAssets/${getAsset.id}`}>
             <a>
-              <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
+              <Image src={logo} alt="Livepeer Studio Logo" width="50" height="50" />
               <h2> {getAsset.name} </h2>
             </a>
           </Link>
         </div>
       )}
-
-      <h3>
-        <Link href="/onDemand">
-          <a>&larr; Back to OnDemand Page </a>
-        </Link>
-      </h3>
     </main>
   );
 }

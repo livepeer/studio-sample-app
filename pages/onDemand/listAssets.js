@@ -38,7 +38,7 @@ export default function ListAssets({ assets }) {
           <div className={styles.card} key={asset.id}>
             <Link href={`/videoAssets/${asset.id}`}>
               <a>
-                <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
+                <Image src={logo} alt="Livepeer Studio Logo" width="100" height="100" />
                 <h2 className={styles.title2}> {asset.name} </h2>
                 <p>Status:</p>
                 {asset.status.phase === "ready" ? (

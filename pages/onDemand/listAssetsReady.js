@@ -47,8 +47,8 @@ export default function ListAssets({ assets }) {
           <div className={styles.card} key={asset.id}>
             <Link href={`/videoAssets/${asset.id}`}>
               <a>
-                <Image src={logo} alt="Livepeer Studio Logo" width="256" height="256" />
-                <h3 className={styles.title2}> {asset.name} </h3>
+                <Image src={logo} alt="Livepeer Studio Logo" width="50" height="50" />
+                <h2 className={styles.title2}> {asset.name} </h2>
               </a>
             </Link>
           </div>
