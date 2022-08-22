@@ -16,7 +16,7 @@ export default function CreateAsset() {
   console.log(createdAsset);
 
   return (
-    <div>
+    <div className={styles.main}>
       <div className={styles.card}>
         <input type="file" accept="video/mp4" onChange={(e) => setVideo(e?.target?.files?.[0])} />
         <button
