@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@livepeer/react": "^0.2.2",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
+    "ethers": "^5.7.0",
+    "livepeer": "^0.2.2",
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tus-js-client": "^3.0.0"
+    "tus-js-client": "^3.0.0",
+    "wagmi": "^0.6.4"
   },
   "devDependencies": {
     "@types/node": "^18.7.6",
