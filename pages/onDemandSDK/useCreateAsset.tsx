@@ -6,14 +6,19 @@ import styles from "../../styles/CreateAssetForm.module.css";
 import logo from "../../public/studioLogo.png";
 
 export default function CreateAsset() {
+  // Set state for video file to upload
   const [video, setVideo] = useState<File | undefined>();
+  // Create an asset using 'useCreateAsset' hook by using the mutate property set to 'createAsset'
+  //  and also getting the asset Id after creation with 'createdAsset' parameter from the data property
   const { mutate: createAsset, data: createdAsset, status } = useCreateAsset({});
+  // Passing it the asset ID using the 'useAsset' hook to retrieve the asset
+  // assigning the 'assetId' with the newly created asset's id 'createdAsset?.id'
   const { data: asset, error } = useAsset({
     assetId: createdAsset?.id,
     refetchInterval: (asset) => (!asset?.playbackUrl ? 5000 : false),
   });
 
-  console.log(createdAsset);
+  // console.log(createdAsset);
 
   return (
     <div className={styles.main}>
@@ -33,7 +38,7 @@ export default function CreateAsset() {
           Create Asset
         </button>
       </div>
-
+      {/* Displays the asset card of the created asset otherwise displays error if not created */}
       {asset?.status.phase !== "ready" ? null : (
         <div className={styles.card} key={asset?.id}>
           <Link href={`/videoAssets/${asset?.id}`}>

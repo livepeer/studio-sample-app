@@ -8,7 +8,7 @@ import logo from "../../public/studioLogo.png";
 export default function GetAsset() {
 // Setting state of the asset ID
   const [ assetId, setAssetId ] = useState( "" );
-  // Pasing it the asset ID using the 'useAsset' hook to retrieve the asset
+  // Passing it the asset ID using the 'useAsset' hook to retrieve the asset
   // specifying with the 'getAsset' parameter
    const { data: getAsset, error } = useAsset({assetId} );
   
