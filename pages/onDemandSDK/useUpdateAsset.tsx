@@ -5,7 +5,7 @@ import styles from "../../styles/CreateAssetForm.module.css";
 export default function UpdateAsset() {
   const [assetId, setAssetId] = useState<string>();
   const [name, setName] = useState<string>();
-  const [storage, setStorage] = useState();
+  const [storage, setStorage] = useState<string>();
   const [meta, setMeta] = useState<string>();
 
   const { mutate: updateAsset, status, error } = useUpdateAsset();
