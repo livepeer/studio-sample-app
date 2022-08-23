@@ -3,10 +3,10 @@ import { useState } from "react";
 import styles from "../../styles/CreateAssetForm.module.css";
 
 export default function UpdateAsset() {
-  const [assetId, setAssetId] = useState<string>();
-  const [name, setName] = useState<string>();
-  const [storage, setStorage] = useState<string>();
-  const [meta, setMeta] = useState<string>();
+  const [ assetId, setAssetId ] = useState<string>('');
+  const [name, setName] = useState<string | undefined>();
+  const [storage, setStorage] = useState<string | undefined>();
+  const [meta, setMeta] = useState<string | undefined>();
 
   const { mutate: updateAsset, status, error } = useUpdateAsset();
 
@@ -70,7 +70,7 @@ export default function UpdateAsset() {
               assetId,
               name,
               storage: "ipfs",
-              meta,
+              meta:{},
             });
           }}
         >
