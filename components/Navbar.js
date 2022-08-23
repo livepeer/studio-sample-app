@@ -114,9 +114,9 @@ export default function Navbar() {
 
           <Link className={styles.active} href="/onDemandSDK">
             <a className="bg-blue-800 text-white block px-3 py-2 rounded-md text-base font-medium">
-               OnDemand
+              🧰 OnDemand
             </a>
-          </Link>🧰
+          </Link>
 
           {/* <Link className={styles.active} href="/mint">
               <a className="bg-blue-800 text-white block px-3 py-2 rounded-md text-base font-medium">
