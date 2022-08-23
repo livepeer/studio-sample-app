@@ -11,8 +11,8 @@ export default function UpdateAsset() {
   const { mutate: updateAsset, status, error } = useUpdateAsset();
 
   return (
-    <div>
-        <h1 className={styles.title}>Get Created Asset By Id</h1>
+    <div className={styles.main}>
+      <h1 className={styles.title}>Get Created Asset By Id</h1>
       <div className={styles.card}>
         <label htmlFor="assetId" className="text-base">
           Asset ID:
@@ -26,11 +26,11 @@ export default function UpdateAsset() {
           required
           onChange={(e) => setAssetId(e.target.value)}
         />
-        <br/>
+        <br />
         <label htmlFor="name" className="text-base">
           New Name:
         </label>
-        <br/>
+        <br />
         <input
           className="border rounded-md text-base mx-2"
           type="text"
@@ -38,11 +38,11 @@ export default function UpdateAsset() {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <br/>
+        <br />
         <label htmlFor="storage" className="text-base">
           Storage:
         </label>
-        <br/>
+        <br />
         <input
           className="border rounded-md text-base mx-2"
           type="text"
@@ -50,11 +50,11 @@ export default function UpdateAsset() {
           value={storage}
           onChange={(e) => setStorage(e.target.value)}
         />
-        <br/>
+        <br />
         <label htmlFor="meta" className="text-base">
           Meta:
         </label>
-        <br/>
+        <br />
         <input
           className="border rounded-md text-base mx-2"
           type="text"
@@ -62,7 +62,7 @@ export default function UpdateAsset() {
           value={meta}
           onChange={(e) => setMeta(e.target.value)}
         />
-        <br/>
+        <br />
         <button
           disabled={status === "loading"}
           onClick={() => {
@@ -70,7 +70,7 @@ export default function UpdateAsset() {
               assetId,
               name,
               storage: "ipfs",
-              meta:{},
+              meta: {},
             });
           }}
         >
