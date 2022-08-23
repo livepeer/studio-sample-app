@@ -39,7 +39,7 @@ export default function CreateAsset() {
         </button>
       </div>
       {/* Displays the asset card of the created asset otherwise displays error if not created */}
-      {asset?.status.phase !== "ready" ? null : (
+      {asset?.status?.phase !== "ready" ? null : (
         <div className={styles.card} key={asset?.id}>
           <Link href={`/videoAssets/${asset?.id}`}>
             <a>
