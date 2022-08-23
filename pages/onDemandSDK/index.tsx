@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title} s>
+        <h1 className={styles.title}>
           Welcome to On Demand Videos SDK 🧰
         </h1>
 
