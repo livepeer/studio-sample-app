@@ -72,6 +72,12 @@ export default function Navbar() {
                   </a>
                 </Link>
 
+                <Link className={styles.active} href="/onDemandSDK">
+                  <a className="text-gray-200 hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-md font-medium">
+                    🧰 OnDemand SDK
+                  </a>
+                </Link>
+
                 {/* <Link className={styles.active} href="/mint">
                     <a className="text-gray-200 hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-md font-medium">
                       🖼 Mint NFT
@@ -100,9 +106,15 @@ export default function Navbar() {
               </a>
             </Link> */}
 
-          <Link className={styles.active} href="/">
+          <Link className={styles.active} href="/onDemand">
             <a className="bg-blue-800 text-white block px-3 py-2 rounded-md text-base font-medium">
               📼 OnDemand
+            </a>
+          </Link>
+
+          <Link className={styles.active} href="/onDemandSDK">
+            <a className="bg-blue-800 text-white block px-3 py-2 rounded-md text-base font-medium">
+              🧰 OnDemand
             </a>
           </Link>
 
