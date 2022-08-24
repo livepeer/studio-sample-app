@@ -86,6 +86,7 @@ export default function Update() {
         <br />
         <textarea
           className="border rounded-md text-base mx-2"
+          placeholder=" &#123; &#8221;title&#8221;: &#8221;Asset Title&#8221; &#125;"
           type="text"
           value={formState.meta}
           name="meta"
