@@ -62,3 +62,5 @@ With the following features:
   * 🔬 This code calls the the API endpoint from the backend that is setup using [NextJS API Routes](https://nextjs.org/docs/api-routes/introduction)
 
   * 🔬 Setting state to get the `assetId` from the user, and setting another state `getAsset` for information from the API call to displays information the asset available in the `return()`
+
+> Once this step is complete, proceed to [Upload Asset Guide](Guides/UploadAssets.md)
