@@ -46,6 +46,6 @@ npm run dev
 
   * [ ] 📝 Inside this file place your Livepeer API key and name it
 
-   `LIVEPEER_API_KEY="5dfdsev4-42d7-2bf0-9mwce-caa8fd9604a87"`
+   `LIVEPEER_API_KEY="5dfdsev4-42d7-2bf0-9mwce-caa8fd9104a87"`
 
 > Once the Intial setup is complete, proceed to [List Asset Guide](Guides/ListAssets.md)
