@@ -101,7 +101,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "pages/onDemand/listAssetId.js"
   ],
   "exclude": [
     "node_modules"
