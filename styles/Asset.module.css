@@ -111,7 +111,11 @@
   rounded-md
   border-solid
   text-start
+  text-sm
+  break-words
   w-full
+  grid
+  grid-cols-2
 }
 
 .iframe {
