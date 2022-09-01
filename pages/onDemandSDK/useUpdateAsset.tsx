@@ -5,8 +5,8 @@ import styles from "../../styles/CreateAssetForm.module.css";
 export default function UpdateAsset() {
   const [ assetId, setAssetId ] = useState<string>('');
   const [name, setName] = useState<string | undefined>();
-  const [storage, setStorage] = useState<string | undefined>();
-  const [meta, setMeta] = useState<string | undefined>();
+  const [storage, setStorage] = useState<string | undefined>(undefined);
+  const [meta, setMeta] = useState<string>();
 
   const { mutate: updateAsset, status, error } = useUpdateAsset();
 
@@ -59,6 +59,7 @@ export default function UpdateAsset() {
           className="border rounded-md text-base mx-2"
           type="text"
           name="meta"
+          placeholder='{"title":"Asset Title"}'
           value={meta}
           onChange={(e) => setMeta(e.target.value)}
         />
@@ -69,8 +70,8 @@ export default function UpdateAsset() {
             updateAsset({
               assetId,
               name,
-              storage: "ipfs",
-              meta: {},
+              storage: 'ipfs',
+              meta: meta ? JSON.parse( meta ) : null
             });
           }}
         >
