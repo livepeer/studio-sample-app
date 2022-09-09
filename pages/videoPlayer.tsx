@@ -1,10 +1,13 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { VideoPlayer } from '@livepeer/react';
 import styles from '../styles/VideoPlayer.module.css';
 
 export default function Player() {
   // Set the state to get either the playback URL or playback ID
-  const [ playbackSource, setPlaybackSource ] = useState<string>('');
+  const [playbackSource, setPlaybackSource] = useState<string>('');
+
+  const playbackurl = '.m3u8';
+  // console.log(playbackSource.includes(playbackurl));
 
   return (
     <div className={styles.main}>
@@ -17,15 +20,17 @@ export default function Player() {
         name='playbackSource'
         onChange={(e) => setPlaybackSource(e.target.value)}
       />
-      
 
-      <VideoPlayer
-        playbackId = { playbackSource } 
-        src={playbackSource}
-        className={styles.card}
-        width={500}
-        autoPlay={true}
-      />
+      {playbackSource.includes(playbackurl) ? (
+        <VideoPlayer src={playbackSource} className={styles.card} width={500} autoPlay={true} />
+      ) : (
+        <VideoPlayer
+          playbackId={playbackSource}
+          className={styles.card}
+          width={500}
+          autoPlay={true}
+        />
+      )}
     </div>
   );
 }
