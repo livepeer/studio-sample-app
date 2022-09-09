@@ -118,7 +118,7 @@
   grid-cols-2
 }
 
-.iframe {
+.videoplayer {
   @apply
   shadow-xl
   m-6

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import logo from '../../public/studioLogo.png';
+import { VideoPlayer } from '@livepeer/react';
 import styles from '../../styles/Asset.module.css';
 
 // Calling the api from server side using 'getServerSideProps' and passing in existing
@@ -33,19 +34,16 @@ export default function AssetDetails({ assets }) {
   return (
     <div>
       <div className={styles.card} key={id}>
+        {/* Display embedded Video Player if it exists, otherwise show an image */}
         {assets.status.phase === 'ready' ? (
           <div>
-            {/* Display embedded Video Player if it exists, otherwise show an image */}
-            <iframe
-              className={styles.iframe}
-              src={`https://lvpr.tv?v=${assets.playbackId}`}
-              frameForder='0'
-              height='300px'
-              allowFullScreen
-              allow='autoplay; encrypted-media; picture-in-picture'
-              sandbox='allow-scripts'
-            ></iframe>
-
+            <VideoPlayer
+              playbackId={`${assets.playbackId}`}
+              className={styles.videoplayer}
+              autoPlay={ true }
+              loop
+              muted
+            />
             {/* Code for embedding the video */}
             <div className={styles.embedInfo}>
               <div>
@@ -84,9 +82,9 @@ export default function AssetDetails({ assets }) {
             </div>
           </div>
         ) : (
-            <div style={ { display: 'flex',  justifyContent: 'center'}}>
-              <Image src={ logo } alt='Livepeer Studio Logo' width='256' height='256' layout='fixed' />
-              </div>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Image src={logo} alt='Livepeer Studio Logo' width='256' height='256' layout='fixed' />
+          </div>
         )}
 
         {/* Display information about the asset */}
