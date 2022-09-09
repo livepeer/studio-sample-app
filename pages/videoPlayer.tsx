@@ -12,7 +12,7 @@ export default function Player() {
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Livepeer Studio Video Player</h1>
-      <h5 className={styles.h5}>Provide a playback Id or URL</h5>
+      <h5 className={styles.h5}>Provide a playback URL or playback Id</h5>
       <input
         className='border rounded-md text-base mx-2'
         type='text'
@@ -22,13 +22,22 @@ export default function Player() {
       />
 
       {playbackSource.includes(playbackurl) ? (
-        <VideoPlayer src={playbackSource} className={styles.card} width={500} autoPlay={true} />
+        <VideoPlayer
+          src={playbackSource}
+          className={styles.card}
+          width={800}
+          autoPlay={true}
+          loop
+          muted
+        />
       ) : (
         <VideoPlayer
           playbackId={playbackSource}
           className={styles.card}
-          width={500}
+          width={800}
           autoPlay={true}
+          loop
+          muted
         />
       )}
     </div>
