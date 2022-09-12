@@ -6,7 +6,7 @@ import styles from '../../styles/Assets.module.css';
 
 
 export async function getServerSideProps() {
-  const res = await fetch(`https://livepeer.studio/api/stream`, {
+  const res = await fetch(`https://livepeer.studio/api/stream?streamsonly=1`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${process.env.API_KEY}`,
