@@ -40,20 +40,21 @@ export default function UpdateAsset() {
           onChange={(e) => setName(e.target.value)}
         />
         <br />
-        <label htmlFor='storage' className='text-base'>
+        {getAsset?.storage?.ipfs?.cid ? <label htmlFor='CID' className='text-base'>
+          CID:
+        </label> : <label htmlFor='storage' className='text-base'>
           Storage:
-        </label>
+        </label>}
         <br />
-
         {getAsset?.storage?.ipfs?.cid ? (
-          <p>CID: {getAsset?.storage?.ipfs?.cid}</p>
+          <p>{getAsset?.storage?.ipfs?.cid}</p>
         ) : (
           <button
             disabled={status === 'loading' || status === 'success'}
             onClick={() => {
               updateAsset({
                 assetId,
-                storage: "ipfs",
+                storage: 'ipfs',
               });
             }}
           >
@@ -69,13 +70,15 @@ export default function UpdateAsset() {
           className='border rounded-md text-base mx-2'
           type='text'
           name='meta'
-          placeholder='{"title":"Asset Title"}'
+          placeholder='ex. {
+            "title":"Title", "name":"New Name"
+          }'
           value={meta}
           onChange={(e) => setMeta(e.target.value)}
         />
         <br />
         <button
-          disabled={status === 'loading' }
+          disabled={status === 'loading'}
           onClick={() => {
             updateAsset({
               assetId,
