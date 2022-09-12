@@ -17,6 +17,13 @@ export default function Home() {
         </h1>
 
         <div className={styles.grid}>
+          <Link href='livestream'>
+            <a className={styles.card}>
+              <h2>LiveStream &rarr;</h2>
+              <p>Learn all about Livepeer Studio&apos;s Livestream</p>
+            </a>
+          </Link>
+          
           <Link href='onDemand/'>
             <a className={styles.card}>
               <h2>On Demand &rarr;</h2>
@@ -34,12 +41,6 @@ export default function Home() {
             <a className={styles.card}>
               <h2>Livepeer Video Player &rarr;</h2>
               <p>Learn all about the Livepeer Video Player</p>
-            </a>
-          </Link>
-          <Link href='livestream'>
-            <a className={styles.card}>
-              <h2>LiveStream &rarr;</h2>
-              <p>Learn all about Livepeer Studio&apos;s Livestream</p>
             </a>
           </Link>
         </div>
