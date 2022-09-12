@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { VideoPlayer } from '@livepeer/react';
 import logo from '../../public/studioLogo.png';
 import styles from '../../styles/Assets.module.css';
 
@@ -36,9 +37,22 @@ export default function GetStreams({streams}) {
           <div className={styles.card} key={stream.id}>
             <Link href={`/streams/${stream.id}`}>
               <a>
-                <Image src={logo} alt='Livepeer Studio Logo' width='100' height='100' />
+                { stream.isActive ? (
+                  <div>
+                    <h2 className={ styles.title }> Now Watching: { stream.name } </h2>
+                    <VideoPlayer
+                      playbackId={ `${ stream.playbackId }` }
+                      className={ styles.videoplayer }
+                      autoPlay={ true }
+                      loop
+                      muted
+                    />
+                  </div>
+                ) :
+                  <Image src={ logo } alt='Livepeer Studio Logo' width='100' height='100' />
+                }
                 <h2 className={styles.title2}> {stream.name} </h2>
-                <p>LiveStreaming:</p>
+                <p>Stream Status:</p>
                 {stream.isActive ? <p className={styles.ready}>Live Now!</p> : <p className={styles.failed}>Not Live</p>}
               </a>
             </Link>
