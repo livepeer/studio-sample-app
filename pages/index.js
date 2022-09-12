@@ -36,6 +36,12 @@ export default function Home() {
               <p>Learn all about the Livepeer Video Player</p>
             </a>
           </Link>
+          <Link href='livestream'>
+            <a className={styles.card}>
+              <h2>LiveStream &rarr;</h2>
+              <p>Learn all about Livepeer Studio&apos;s Livestream</p>
+            </a>
+          </Link>
         </div>
       </main>
     </div>
