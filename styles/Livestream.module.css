@@ -1,5 +1,5 @@
 .main {
-  min-height: 65vh;
+  min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
   display: flex;
@@ -54,7 +54,7 @@
 
 .grid {
  display: grid;
- grid-template-columns: repeat(3, 1fr);
+ grid-template-columns: repeat(4, 1fr);
  grid-gap: 10px;
 }
 
