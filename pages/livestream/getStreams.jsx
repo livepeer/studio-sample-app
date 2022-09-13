@@ -43,7 +43,7 @@ export default function GetStreams({streams}) {
                     <VideoPlayer
                       playbackId={ `${ stream.playbackId }` }
                       className={ styles.videoplayer }
-                      autoPlay={ true }
+                      autoPlay={ false }
                       loop
                       muted
                     />

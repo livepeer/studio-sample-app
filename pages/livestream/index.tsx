@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title} s>
+        <h1 className={styles.title}>
           Welcome to Livestreamming 📺
         </h1>
 
@@ -30,8 +30,7 @@ export default function Home() {
               <p>Gets all streams from the account</p>
             </a>
           </Link>
-        </div>
-        <div className={styles.grid}>
+
           <Link href='livestream/createStream'>
             <a className={styles.card}>
               <h2>Create a Stream &rarr;</h2>

@@ -5,21 +5,17 @@ import { VideoPlayer } from '@livepeer/react';
 import logo from '../../public/studioLogo.png';
 import styles from '../../styles/Assets.module.css';
 
-
-
 export default function GetStreamById() {
+  const [streamId, setStreamId] = useState('');
+  const [getStreamInfo, setGetStreamInfo] = useState('');
 
-  const [ streamId, setStreamId ] = useState('');
-  const [ getStreamInfo, setGetStreamInfo ] = useState('');
-
-  async function getStream( e ) {
+  async function getStream(e) {
     e.preventDefault();
-    const res = await fetch( `/api/stream/${ streamId }` );
-    
+    const res = await fetch(`/api/stream/${streamId}`);
+
     const data = await res.json();
 
-    setGetStreamInfo( data );
-    console.log(data);
+    setGetStreamInfo(data);
   }
 
   return (
@@ -51,27 +47,23 @@ export default function GetStreamById() {
           <Link href={`/streams/${getStreamInfo.id}`}>
             {getStreamInfo.isActive ? (
               <a>
-                <div>
-                  <VideoPlayer
-                    playbackId={`${getStreamInfo.playbackId}`}
-                    className={styles.videoplayer}
-                    autoPlay={true}
-                    loop
-                    muted
-                  />
-                </div>
-                <h2> {getStreamInfo.name} </h2>
+                <VideoPlayer
+                  playbackId={`${getStreamInfo.playbackId}`}
+                  autoPlay={false}
+                  width={200}
+                  loop
+                  muted
+                />
+                <p>Stream Status:</p>
+                <p className={styles.ready}>Live Now!</p>
+                <p> {getStreamInfo.name} </p>
               </a>
             ) : (
               <a>
                 <Image src={logo} alt='Livepeer Studio Logo' width='50' height='50' />
                 <h2> {getStreamInfo.name} </h2>
                 <p>Stream Status:</p>
-                {getStreamInfo.isActive ? (
-                  <p className={styles.ready}>Live Now!</p>
-                ) : (
-                  <p className={styles.failed}>Not Live</p>
-                )}
+                <p className={styles.failed}>Not Live</p>
               </a>
             )}
           </Link>
