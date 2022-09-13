@@ -23,7 +23,14 @@ export default function Home() {
               <p>Learn all about Livepeer Studio&apos;s Livestream</p>
             </a>
           </Link>
-          
+
+          <Link href='livestreamSDK'>
+            <a className={styles.card}>
+              <h2>LiveStreamSDK &rarr;</h2>
+              <p>Learn all about Livestreams with the SDK</p>
+            </a>
+          </Link>
+
           <Link href='onDemand/'>
             <a className={styles.card}>
               <h2>On Demand &rarr;</h2>
