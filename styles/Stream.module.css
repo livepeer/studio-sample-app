@@ -4,14 +4,15 @@
 
 .main {
   min-height: 100vh;
+  padding: 4rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  margin-left: 260px; 
   font-size: 28px; 
   padding: 0px 10px;
-  margin: 50px
 }
 
 
@@ -27,18 +28,21 @@
 }
 
 .title {
-  @apply 
-  my-10
-  leading-5
-  text-5xl
-  font-sans
-  text-blue-500
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.title2 {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 1rem;
+  text-align: center;
 }
 
 .title,
 .description {
-  @apply
-  text-center
+  text-align: center;
 }
 
 .description {
@@ -58,11 +62,48 @@
 
 .grid {
  display: grid;
- grid-template-columns: repeat(4, 1fr);
- grid-gap: 5px;
+ grid-template-columns: repeat(auto-fit, 1fr);
+ grid-gap: 10px;
 }
 
 .card {
+ @apply
+  shadow-xl
+  m-6
+  p-5
+  border-2
+  rounded-md
+  border-solid
+  grid
+  grid-cols-2
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+@apply
+  text-blue-700
+  border-blue-700
+}
+
+
+.embedInfo {
+@apply
+  shadow-xl
+  m-6
+  p-5
+  border-2
+  rounded-md
+  border-solid
+  text-start
+  text-sm
+  break-words
+  w-full
+  grid
+  grid-cols-2
+}
+
+.videoplayer {
   @apply
   shadow-xl
   m-6
@@ -70,26 +111,35 @@
   border-2
   rounded-md
   border-solid
-  text-center
+  w-full
 }
 
-.card:hover,
-.card:focus,
-.card:active {
+.cardbody {
   @apply
-  text-blue-700
-  border-blue-700
+  shadow-xl
+  m-6
+  p-5
+  border-2
+  rounded-md
+  border-solid
+  text-start
 }
 
 .card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.25rem;
+  margin: 1rem 0 1rem 0;
+  font-size: 1.5rem;
 }
 
-
 .card p {
-  font-size: 1rem;
-  line-height: 1;
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: bold;
+  text-align: start
+}
+.url:hover {
+  color:#22c55e;
+  margin: 0;
 }
 
 .ready  {
@@ -104,6 +154,11 @@
   font-size: 1.25rem;
   line-height: 1.5;
   color: #ef4444;
+}
+
+.logo {
+  height: 1em;
+  margin-left: 0.5rem;
 }
 
 @media (max-width: 600px) {
