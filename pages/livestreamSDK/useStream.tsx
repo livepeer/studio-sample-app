@@ -12,7 +12,7 @@ export default function GetStream() {
 
   return (
     <div className={styles.main}>
-      <h1 className={styles.title}>Get Created Asset By Id</h1>
+      <h1 className={styles.title}>Get Created Stream By Id</h1>
       <form method='GET' className={styles.card}>
         <label htmlFor='asset' className='text-base'>
           Stream ID:{' '}

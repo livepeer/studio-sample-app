@@ -33,34 +33,28 @@ export default function Home() {
             </a>
           </Link>
 
-          {/*  <Link href='livestreamSDK/useStreamSession'>
+          <Link href='livestreamSDK/useStreamSession'>
+            <a className={styles.card}>
+              <h2>UseStreamSession&rarr;</h2>
+              <p>Get a session by by ID</p>
+            </a>
+          </Link>
+
+          <Link href='livestreamSDK/useStreamSessions'>
+            <a className={styles.card}>
+              <h2>UseStreamSessions&rarr;</h2>
+              <p>Get all sessions</p>
+            </a>
+          </Link>
+
+
+          <Link href='livestreamSDK/useUpdateStream'>
            <a className={styles.card}>
-             <h2>Update Asset&rarr;</h2>
-             <p>Updates a specific asset by ID</p>
-           </a>
-         </Link>
- 
-         <Link href='livestreamSDK/useStreamSessions'>
-           <a className={styles.card}>
-             <h2>Update Asset&rarr;</h2>
-             <p>Updates a specific asset by ID</p>
+             <h2>Update Stream&rarr;</h2>
+             <p>Enable recording, multistream, and suspending of a stream</p>
            </a>
          </Link>
         
-         <Link href='livestreamSDK/useCreateStream'>
-           <a className={styles.card}>
-             <h2>Update Asset&rarr;</h2>
-             <p>Updates a specific asset by ID</p>
-           </a>
-         </Link>
- 
-         <Link href='livestreamSDK/useUpdateStream'>
-           <a className={styles.card}>
-             <h2>Update Asset&rarr;</h2>
-             <p>Updates a specific asset by ID</p>
-           </a>
-         </Link>
-         */}
         </div>
       </main>
 

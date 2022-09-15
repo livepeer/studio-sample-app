@@ -138,7 +138,30 @@
   text-white
 }
 
+.ready  {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color:#22c55e;
+}
 
+.failed  {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: #ef4444;
+}
+
+ button.button {
+  @apply
+  m-0
+  rounded-md
+  p-2
+  bg-blue-600
+  hover:bg-blue-400
+  text-base
+  text-white
+}
 
 @media (max-width: 600px) {
   .grid {

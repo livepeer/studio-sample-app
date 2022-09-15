@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useCreateStream, VideoPlayer } from '@livepeer/react';
+import { useCreateStream} from '@livepeer/react';
 import styles from '../../styles/CreateAssetForm.module.css';
 import logo from '../../public/studioLogo.png';
 
