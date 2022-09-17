@@ -7,12 +7,12 @@ import logo from '../../public/studioLogo.png';
 
 export default function GetSession() {
   const [streamId, setStreamId] = useState<string>();
-  const { data: streamSessions } = useStreamSessions({ streamId });
+  const { data: streamSessions } = useStreamSessions({streamId});
 
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Get Stream Sessions</h1>
-      <form method='GET' className={styles.card}>
+      <div className={styles.card}>
         <label htmlFor='asset' className='text-base'>
           Stream ID:{' '}
         </label>
@@ -24,23 +24,21 @@ export default function GetSession() {
           required
           onChange={(e) => setStreamId(e.target.value)}
         />
-      </form>
+      </div>
 
-      {!streamId ? null : (
-        <div className={styles.card} key={streamId}>
-          <Link href={`/sessions}`}>
-            {streamSessions ? (
+      <ul className={styles.grid}>
+        {streamSessions?.map((session) => (
+          <div className={styles.card} key={streamId}>
+            <Link href={`/sessions/${session.id}}`}>
               <a>
                 <Image src={logo} alt='Livepeer Studio Logo' width='50' height='50' />
                 <p>Session Name:</p>
-                <p> {streamSessions} </p>
+                <p> {session.name} </p>
               </a>
-            ) : (
-              <p>Session Does not exist</p>
-            )}
-          </Link>
-        </div>
-      )}
+            </Link>
+          </div>
+        ))}
+      </ul>
     </div>
   );
 }
