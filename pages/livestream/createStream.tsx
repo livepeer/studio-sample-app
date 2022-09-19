@@ -53,7 +53,7 @@ export default function CreateStream() {
     <div className={styles.main}>
       <h1 className={styles.title}>Create a New Stream</h1>
       <form onSubmit={createNewStream} method='POST' className={styles.card}>
-        <label htmlFor='asset'>Stream Name: </label>
+        <label htmlFor='stream'>Stream Name: </label>
         <input
           className='border rounded-md text-base mx-2'
           type='text'
