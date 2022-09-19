@@ -36,7 +36,7 @@ export default function CreateStream() {
   try {
     const response = await fetch('/api/createStream', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Methods': '*' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: streamName,
         profiles,
