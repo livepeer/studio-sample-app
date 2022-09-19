@@ -6,7 +6,7 @@ import styles from '../../styles/Assets.module.css';
 
 export default function GetSessionById() {
   const [sessionId, setSessionId] = useState('');
-  const [getSessionInfo, setGetSessionInfo] = useState('');
+  const [getSessionInfo, setGetSessionInfo] = useState<any>();
 
   async function getStream(e: FormEvent) {
     e.preventDefault();
