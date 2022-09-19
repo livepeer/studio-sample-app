@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
+import Router, { useRouter } from 'next/router';
 import styles from '../../styles/Form.module.css';
 
 
 export default function CreateStream() {
 
+  const router = useRouter();
   const [ streamName, setStreamName ] = useState<string>( '' );
   const profiles = [
     {
@@ -29,7 +31,8 @@ export default function CreateStream() {
     },
   ];
   
-  async function createNewStream() {
+  async function createNewStream( e: FormEvent ) {
+    e.preventDefault();
   try {
     const response = await fetch('/api/createStream', {
       method: 'POST',
@@ -41,11 +44,11 @@ export default function CreateStream() {
     });
     
     setStreamName( '' );
+    router.push('/livestream/getStreams')
 
     const data = await response.json();
   } catch (error) {
-    console.log(error);
-    
+    // console.log(error);
   }
 }
 
