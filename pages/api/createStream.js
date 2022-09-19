@@ -7,7 +7,7 @@ export default async function handler( req, res ) {
       headers: {
         Authorization: `Bearer ${process.env.API_KEY}`,
         'Content-Type': 'application/json',
-        'Acces-Control-Allow-Methods' :'*'s
+        'Access-Control-Allow-Methods' :'*',
       },
       body: JSON.stringify( {
         name,
