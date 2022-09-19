@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Livestreamming 📺</h1>
+        <h1 className={styles.title}>Welcome to Livestreaming 📺</h1>
 
         <div className={styles.grid}>
           <Link href='livestream/getStream'>

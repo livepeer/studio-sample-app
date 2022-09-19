@@ -43,7 +43,7 @@ export default function GetSessionById() {
 
       {!getSessionInfo ? null : (
         <div className={styles.card} key={getSessionInfo?.id}>
-          <Link href={`/streams/${getSessionInfo?.id}`}>
+          <Link href={`/sessions/${getSessionInfo?.id}`}>
             {getSessionInfo?.isActive ? (
               <a>
                 <p>Session Status:</p>
