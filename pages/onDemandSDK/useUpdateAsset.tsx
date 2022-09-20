@@ -54,7 +54,7 @@ export default function UpdateAsset() {
             onClick={() => {
               updateAsset({
                 assetId,
-                storage: 'ipfs',
+                storage: { ipfs:true},
               });
             }}
           >
