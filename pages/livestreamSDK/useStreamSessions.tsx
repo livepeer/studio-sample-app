@@ -31,7 +31,7 @@ export default function GetSession() {
       <ul className={ styles.grid }>
         { streamSessions?.map( ( session ) => (
           <div className={styles.card} key={streamId}>
-            <Link href={`/sessions/${session.id}}`}>
+            <Link href={`/session/${session.id}}`}>
               <a>
                 <Image src={logo} alt='Livepeer Studio Logo' width='50' height='50' />
                 <p>Session Name:</p>
