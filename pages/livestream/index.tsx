@@ -12,9 +12,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to Livestreamming 📺
-        </h1>
+        <h1 className={styles.title}>Welcome to Livestreaming 📺</h1>
 
         <div className={styles.grid}>
           <Link href='livestream/getStream'>
@@ -35,6 +33,20 @@ export default function Home() {
             <a className={styles.card}>
               <h2>Create a Stream &rarr;</h2>
               <p>Create a new stream</p>
+            </a>
+          </Link>
+
+          <Link href='livestream/getSession'>
+            <a className={styles.card}>
+              <h2>Get Session By Id &rarr;</h2>
+              <p>Get a session of a stream</p>
+            </a>
+          </Link>
+
+          <Link href='livestream/getSessions'>
+            <a className={styles.card}>
+              <h2>Get Session By Stream Id &rarr;</h2>
+              <p>Get a session of a stream with the stream Id</p>
             </a>
           </Link>
         </div>
