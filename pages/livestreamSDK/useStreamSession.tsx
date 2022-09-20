@@ -28,7 +28,7 @@ export default function GetSession() {
 
       {!streamSessionId ? null : (
         <div className={styles.card} key={streamSession?.id}>
-          <Link href={`/sessions/${streamSession?.id}`}>
+          <Link href={`/session/${streamSession?.id}`}>
             {streamSession ? (
               <a>
                 <Image src={logo} alt='Livepeer Studio Logo' width='50' height='50' />
