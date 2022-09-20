@@ -8,10 +8,11 @@ import logo from '../../public/studioLogo.png';
 export default function GetSession() {
   const [streamSessionId, setStreamSessionId] = useState<string>();
   const { data: streamSession } = useStreamSession({ streamSessionId });
+  
 
   return (
     <div className={styles.main}>
-      <h1 className={styles.title}>Get Created Stream By Id</h1>
+      <h1 className={styles.title}>Get Session By Id</h1>
       <form method='GET' className={styles.card}>
         <label htmlFor='asset' className='text-base'>
           Session ID:{' '}
@@ -28,7 +29,7 @@ export default function GetSession() {
 
       {!streamSessionId ? null : (
         <div className={styles.card} key={streamSession?.id}>
-          <Link href={`/sessions/${streamSession?.id}`}>
+          <Link href={`/session/${streamSession?.id}`}>
             {streamSession ? (
               <a>
                 <Image src={logo} alt='Livepeer Studio Logo' width='50' height='50' />

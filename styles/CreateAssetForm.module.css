@@ -154,7 +154,7 @@
 
  button.button {
   @apply
-  m-0
+  mr-3
   rounded-md
   p-2
   bg-blue-600

@@ -7,7 +7,9 @@ import logo from '../../public/studioLogo.png';
 
 export default function GetSession() {
   const [streamId, setStreamId] = useState<string>();
-  const { data: streamSessions } = useStreamSessions({streamId});
+  const { data: streamSessions } = useStreamSessions( { streamId } );
+  
+  
 
   return (
     <div className={styles.main}>
@@ -26,8 +28,8 @@ export default function GetSession() {
         />
       </div>
 
-      <ul className={styles.grid}>
-        {streamSessions?.map((session) => (
+      <ul className={ styles.grid }>
+        { streamSessions?.map( ( session ) => (
           <div className={styles.card} key={streamId}>
             <Link href={`/sessions/${session.id}}`}>
               <a>

@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import { useUpdateStream, useStream } from '@livepeer/react';
+import { useUpdateStream, useStream} from '@livepeer/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../styles/CreateAssetForm.module.css';
 import logo from '../../public/studioLogo.png';
 
+
 export default function UpdateStream() {
   const [ streamId, setStreamId ] = useState<string>( '' );
   const {data: stream} = useStream({streamId, refetchInterval: 1000})
-  const { mutate: updateStream } = useUpdateStream();
+  const { mutate: updateStream, variables } = useUpdateStream();
+
 
 
   return (
@@ -28,7 +30,7 @@ export default function UpdateStream() {
         />
       </form>
 
-      <div>
+      <div className={styles.card}>
         <button
           className={styles.button}
           onClick={() =>
@@ -38,7 +40,19 @@ export default function UpdateStream() {
             })
           }
         >
-          Record
+          Record On/Off
+        </button>
+
+        <button
+          className={styles.button}
+          onClick={() =>
+            updateStream({
+              streamId,
+              suspend: !variables?.suspend,
+            })
+          }
+        >
+          Suspend/Unsuspend Stream
         </button>
       </div>
 
@@ -56,10 +70,17 @@ export default function UpdateStream() {
                 ) : (
                   <p className={styles.failed}>Off</p>
                 )}
+
+                <p>Suspend Status:</p>
+                { variables?.suspend? (
+                  <p className={styles.ready}>On</p>
+                ) : (
+                  <p className={styles.failed}>Off</p>
+                )}
               </a>
             ) : (
               <p>Stream Does not exist</p>
-            )}
+            ) }
           </Link>
         </div>
       )}

@@ -36,7 +36,7 @@ export default function Home() {
           <Link href='livestreamSDK/useStreamSession'>
             <a className={styles.card}>
               <h2>UseStreamSession&rarr;</h2>
-              <p>Get a session by by ID</p>
+              <p>Get a session by ID</p>
             </a>
           </Link>
 
