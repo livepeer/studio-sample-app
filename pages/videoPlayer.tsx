@@ -6,8 +6,9 @@ export default function Player() {
   // Set the state to get either the playback URL or playback ID
   const [playbackSource, setPlaybackSource] = useState<string>('');
 
+  // Quick verifiation to check if url provided is a playback url
   const playbackurl = '.m3u8';
-  // console.log(playbackSource.includes(playbackurl));
+
 
   return (
     <div className={styles.main}>
