@@ -7,29 +7,48 @@ import styles from '../../styles/Asset.module.css';
 // Calling the api from server side using 'getServerSideProps' and passing in existing
 // routes from 'getStaticPaths' for dynamic routing
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`https://livepeer.studio/api/asset/${params.id}`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${process.env.API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-  });
+  const [assetRes, viewsRes] = await Promise.all([
+    fetch(`https://livepeer.studio/api/asset/${params.id}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${process.env.API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+    }),
+
+    fetch(`https://livepeer.studio/api/data/views/${params.id}/total`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${process.env.API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+    }),
+  ]);
+    
   // Convert json response into JS object
-  const data = await res.json();
-  // Assign api response as props to be available to passed
+  const [ assets, views ] = await Promise.all( [
+    assetRes.json(),
+    viewsRes.json()
+  ] )
+  
+  // Assign api responses as props to be available to passed
   return {
     props: {
-      assets: data,
+      assets,
+      views
     },
   };
 }
 
+
 // Function to display each asset with their own information
-export default function AssetDetails({ assets }) {
+export default function AssetDetails({ assets, views }) {
   // Accessing the 'query' from the router object to passing in the id of each asset for dynamic routing
   const {
     query: { id },
   } = useRouter();
+
+
 
   return (
     <div>
@@ -40,7 +59,7 @@ export default function AssetDetails({ assets }) {
             <VideoPlayer
               playbackId={`${assets.playbackId}`}
               className={styles.videoplayer}
-              autoPlay={ true }
+              autoPlay={true}
               loop
               muted
             />
@@ -96,8 +115,11 @@ export default function AssetDetails({ assets }) {
           ) : (
             <p className={styles.failed}>{assets.status.phase}</p>
           )}
+
           <p>Id:</p>
           {assets.id}
+          <p>Start Views:</p>
+          <p className={styles.ready}>{views[0].startViews}</p>
 
           {assets.status.phase === 'ready' ? null : (
             <div>

@@ -39,8 +39,8 @@ export default function Home() {
           </Link>
           <Link href='videoPlayer'>
             <a className={styles.card}>
-              <h2>Livepeer Video Player &rarr;</h2>
-              <p>Learn all about the Livepeer Video Player</p>
+              <h2> Video Players &rarr;</h2>
+              <p>Learn about video players</p>
             </a>
           </Link>
         </div>
