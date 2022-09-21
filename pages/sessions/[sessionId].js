@@ -4,14 +4,13 @@ import logo from '../../public/studioLogo.png';
 import styles from '../../styles/Stream.module.css';
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`https://livepeer.studio/api/stream/${params.streamId}/sessions`, {
+  const res = await fetch(`https://livepeer.studio/api/session/${params.sessionId}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${process.env.API_KEY}`,
       'Content-Type': 'application/json',
     },
   });
-
   const data = await res.json();
   return {
     props: {
