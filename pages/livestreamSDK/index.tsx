@@ -33,12 +33,12 @@ export default function Home() {
             </a>
           </Link>
 
-          <Link href='livestreamSDK/useStreamSession'>
+          {/* <Link href='livestreamSDK/useStreamSession'>
             <a className={styles.card}>
               <h2>UseStreamSession&rarr;</h2>
               <p>Get a session by ID</p>
             </a>
-          </Link>
+          </Link> */}
 
           <Link href='livestreamSDK/useStreamSessions'>
             <a className={styles.card}>
