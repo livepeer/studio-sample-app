@@ -8,6 +8,7 @@ import logo from '../../public/studioLogo.png';
 
 export default function UpdateStream() {
   const [ streamId, setStreamId ] = useState<string>( '' );
+  const [ multiURL, setMultiURL ] = useState<string>( );
   const {data: stream} = useStream({streamId, refetchInterval: 1000})
   const { mutate: updateStream, variables } = useUpdateStream();
 
@@ -27,6 +28,19 @@ export default function UpdateStream() {
           value={streamId}
           required
           onChange={(e) => setStreamId(e.target.value)}
+        />
+        <br />
+        <h2>Add Multistream</h2>
+        <label htmlFor='asset' className='text-base'>
+          Multistream URL:{' '}
+        </label>
+        <input
+          className='border rounded-md text-base mx-2'
+          type='search'
+          name='query'
+          value={multiURL}
+          required
+          onChange={(e) => setMultiURL(e.target.value)}
         />
       </form>
 
@@ -54,34 +68,60 @@ export default function UpdateStream() {
         >
           Suspend/Unsuspend Stream
         </button>
+
+        <button
+          className={styles.button}
+          onClick={() =>
+            updateStream({
+              streamId,
+              multistream: {
+                targets: [
+                  {
+                    profile: 'source',
+                    spec: {
+                      url: `${multiURL}`,
+                    },
+                  },
+                ],
+              },
+            })
+          }
+        >
+          Add Multistream
+        </button>
       </div>
 
       {!streamId ? null : (
         <div className={styles.card} key={stream?.id}>
-          <Link href={`/sessions/${streamId}`}>
-            {stream ? (
-              <a>
-                <Image src={logo} alt='Livepeer Studio Logo' width='50' height='50' />
-                <p>Stream Name:</p>
-                <p> {stream?.name} </p>
-                <p>Record Status:</p>
-                {stream.record ? (
-                  <p className={styles.ready}>On</p>
-                ) : (
-                  <p className={styles.failed}>Off</p>
-                )}
+          {stream ? (
+            <div>
+              <Image src={logo} alt='Livepeer Studio Logo' width='50' height='50' />
+              <p>Stream Name:</p>
+              <p> {stream?.name} </p>
+              <p>Record Status:</p>
+              {stream.record ? (
+                <p className={styles.ready}>On</p>
+              ) : (
+                <p className={styles.failed}>Off</p>
+              )}
 
-                <p>Suspend Status:</p>
-                { variables?.suspend? (
-                  <p className={styles.ready}>On</p>
-                ) : (
-                  <p className={styles.failed}>Off</p>
-                )}
-              </a>
-            ) : (
-              <p>Stream Does not exist</p>
-            ) }
-          </Link>
+              <p>Suspend Status:</p>
+              {variables?.suspend ? (
+                <p className={styles.ready}>On</p>
+              ) : (
+                <p className={styles.failed}>Off</p>
+              )}
+
+              <p>Have Multistream:</p>
+              {stream?.multistream?.targets[0]?.spec?.name ? (
+                <p className={styles.ready}>{stream.multistream?.targets[0]?.spec?.name}</p>
+              ) : (
+                <p className={styles.failed}>No</p>
+              )}
+            </div>
+          ) : (
+            <p>Stream Does not exist</p>
+          )}
         </div>
       )}
     </div>
