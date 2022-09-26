@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@livepeer/react": "^0.3.0",
+    "@livepeer/react": "^0.6.0",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "ethers": "^5.7.0",
