@@ -39,6 +39,13 @@ export default function Home() {
               <p>Updates a specific asset by ID</p>
             </a>
           </Link>
+
+          <Link href='onDemandSDK/useAssetMetrics'>
+            <a className={styles.card}>
+              <h2>Asset Metrics&rarr;</h2>
+              <p>Retrieving metrics for assets</p>
+            </a>
+          </Link>
         </div>
       </main>
 
