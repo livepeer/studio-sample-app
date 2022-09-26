@@ -84,6 +84,12 @@ export default function Navbar() {
                   </a>
                 </Link>
 
+                <Link className={styles.active} href='/videoPlayer'>
+                  <a className='text-gray-200 hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-md font-medium'>
+                    ⏯ Video Player
+                  </a>
+                </Link>
+
                 {/* <Link className={styles.active} href="/mint">
                     <a className="text-gray-200 hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-md font-medium">
                       🖼 Mint NFT
