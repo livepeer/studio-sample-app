@@ -102,8 +102,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/onDemand/listAssetId.js",
-  ],
+    "pages/onDemand/listAssetId.js"
+, "pages/livestream/getStreams.jsx", "pages/livestream/getStream.jsx"  ],
   "exclude": [
     "node_modules"
   ]

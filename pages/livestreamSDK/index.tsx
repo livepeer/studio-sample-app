@@ -14,36 +14,43 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>
           <Link href='https://livepeerjs.org/docs/getting-started.en-US'>
-            Welcome to On Demand Videos SDK 🧰
+            Welcome to Livestream SDK 📹
           </Link>
         </h1>
 
         <div className={styles.grid}>
-          <Link href='onDemandSDK/useAsset'>
+          <Link href='livestreamSDK/useCreateStream'>
             <a className={styles.card}>
-              <h2>Use Asset &rarr;</h2>
-              <p>Gets all assets from your account</p>
+              <h2>UseCreateStream &rarr;</h2>
+              <p>Creates a stream for livestreaming</p>
             </a>
           </Link>
 
-          <Link href='onDemandSDK/useCreateAsset'>
+          <Link href='livestreamSDK/useStream'>
             <a className={styles.card}>
-              <h2>Use Create Asset &rarr;</h2>
-              <p>Creates an asset by uploading a local file using resumable uploads</p>
+              <h2>UseStream &rarr;</h2>
+              <p>Gets a livestream based on the stream ID</p>
             </a>
           </Link>
 
-          <Link href='onDemandSDK/useUpdateAsset'>
+          {/* <Link href='livestreamSDK/useStreamSession'>
             <a className={styles.card}>
-              <h2>Update Asset&rarr;</h2>
-              <p>Updates a specific asset by ID</p>
+              <h2>UseStreamSession&rarr;</h2>
+              <p>Get a session by ID</p>
+            </a>
+          </Link> */}
+
+          <Link href='livestreamSDK/useStreamSessions'>
+            <a className={styles.card}>
+              <h2>UseStreamSessions&rarr;</h2>
+              <p>Get all sessions</p>
             </a>
           </Link>
 
-          <Link href='onDemandSDK/useAssetMetrics'>
+          <Link href='livestreamSDK/useUpdateStream'>
             <a className={styles.card}>
-              <h2>Asset Metrics&rarr;</h2>
-              <p>Retrieving metrics for assets</p>
+              <h2>Update Stream&rarr;</h2>
+              <p>Enable recording, multistream, and suspending of a stream</p>
             </a>
           </Link>
         </div>

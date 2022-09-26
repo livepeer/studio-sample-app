@@ -47,6 +47,36 @@ This sample app uses an API key from a monitored account made for public use. Wh
 
 - Get individual assets
 
+# 🧰 On Demand SDK
+
+- useAsset
+
+- useUpdateAsset
+
+- useCreateAsset
+
+# 📡 Livestream 
+
+- Create stream
+
+- Get all streams
+
+- Get individual stream
+
+- Get all sessions
+
+- Get individual session
+
+# 📹 Livestream SDK 
+
+- useStream
+
+- useCreateStream
+
+- useStreamSessions
+
+- useUpdateStream
+
 # 📜 Documentation
 
 - [Livepeer Studio Docs](https://docs.livepeer.studio/)

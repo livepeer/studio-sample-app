@@ -7,7 +7,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   font-size: 28px; 
   padding: 0px 10px;
@@ -90,6 +90,20 @@
 .card p {
   font-size: 1rem;
   line-height: 1;
+}
+
+.ready  {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color:#22c55e;
+}
+
+.failed  {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: #ef4444;
 }
 
 @media (max-width: 600px) {

@@ -13,7 +13,7 @@ export default function UpdateAsset() {
 
   return (
     <div className={styles.main}>
-      <h1 className={styles.title}>Get Created Asset By Id</h1>
+      <h1 className={styles.title}>Update Asset By Id</h1>
       <div className={styles.card}>
         <label htmlFor='assetId' className='text-base'>
           Asset ID:
@@ -54,7 +54,7 @@ export default function UpdateAsset() {
             onClick={() => {
               updateAsset({
                 assetId,
-                storage: 'ipfs',
+                storage: { ipfs:true},
               });
             }}
           >
