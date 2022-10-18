@@ -9,11 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@livepeer/react": "^1.0.6",
-=======
-    "@livepeer/react": "^0.6.0",
->>>>>>> 36964ed9e3aadddaa49b2a71e47e3397c791fafa
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "ethers": "^5.7.0",
