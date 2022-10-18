@@ -15,7 +15,7 @@ export default function CreateAsset() {
   // assigning the 'assetId' with the newly created asset's id 'createdAsset?.id'
   const { data: asset, error } = useAsset({
     assetId: createdAsset?.id,
-    refetchInterval: (asset) => (!asset?.playbackUrl ? 5000 : false),
+    refetchInterval: (asset) => (!asset?.playbackUrl ? 500 : false),
   });
 
   // console.log(createdAsset);

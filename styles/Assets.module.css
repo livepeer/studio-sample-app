@@ -92,6 +92,20 @@
   line-height: 1;
 }
 
+.ready  {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color:#22c55e;
+}
+
+.failed  {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: #ef4444;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
