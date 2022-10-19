@@ -82,7 +82,7 @@ export default function UpdateAsset() {
           onClick={() => {
             updateAssetArgs({
               assetId,
-              name,
+              name
               // meta: meta ? JSON.parse(meta) : null,
               // storage: {
               //   metadata: meta ? JSON.parse( meta ): null

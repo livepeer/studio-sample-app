@@ -58,7 +58,6 @@ export default function AssetDetails({ assets, views }) {
           <div>
             <Player
               playbackId={`${assets.playbackId}`}
-              className={styles.videoplayer}
               autoPlay={true}
               loop
               muted
