@@ -24,8 +24,8 @@ export default function MintNFT() {
   const { data: asset, status: assetStatus } = useAsset( {
     assetId: createdAsset?.id,
     refetchInterval: ( asset ) => ( asset?.storage?.status?.phase !== 'ready' ? 5000 : false ),
-  });
-
+  } );
+  
   const { mutate: updateAsset, status: updateStatus } = useUpdateAsset();
   
 const onDrop = useCallback(async (acceptedFiles: File[]) => {
@@ -52,6 +52,16 @@ const onDrop = useCallback(async (acceptedFiles: File[]) => {
           : null,
       [uploadProgress, asset?.status?.progress]
     );
+  
+  const isLoading = useMemo(
+    () =>
+      createStatus === 'loading' ||
+      assetStatus === 'loading' ||
+      updateStatus === 'loading' ||
+      (asset && asset?.status?.phase !== 'ready'),
+      // (isExportStarted && asset?.status?.phase !== 'success'),
+    [createStatus, asset, assetStatus, updateStatus]
+  );
 
   return (
     <div>
@@ -71,6 +81,37 @@ const onDrop = useCallback(async (acceptedFiles: File[]) => {
             {video ? <p>Name: {video.name}</p> : <p>Select a video file to upload.</p>}
             {progressFormatted && <p>{progressFormatted}</p>}
           </div>
+          <button
+            className={styles.button}
+            onClick={() => {
+              if (video) {
+                createAsset({ name: video.name, file: video });
+              }
+            }}
+            disabled={!video || isLoading || Boolean(asset)}
+          >
+            Upload Asset
+            {isLoading && <BarLoader color='#fff' />}
+          </button>
+
+
+            <button
+              className={styles.button}
+              onClick={() => {
+                if (asset?.id) {
+                  // setIsExportedStarted(true);
+                  updateAsset({
+                    assetId: asset?.id,
+                    storage: { ipfs: true },
+                  });
+                }
+              }}
+              disabled={!asset?.id || isLoading || Boolean(asset?.storage?.ipfs?.cid)}
+            >
+              Upload to IPFS
+              <br />
+              {isLoading && <BarLoader color='#fff' />}
+            </button>
 
         </div>
       )}
