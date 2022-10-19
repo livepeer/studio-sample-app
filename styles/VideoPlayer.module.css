@@ -144,6 +144,11 @@
   margin-left: 0.5rem;
 }
 
+.player {
+  width: 25rem;
+  margin-top: 1rem;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

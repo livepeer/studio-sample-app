@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { VideoPlayer } from '@livepeer/react';
+import { Player } from '@livepeer/react';
 import logo from '../../public/studioLogo.png';
 import styles from '../../styles/Assets.module.css';
 
@@ -47,10 +47,9 @@ export default function GetStreamById() {
           <Link href={`/streams/${getStreamInfo.id}`}>
             {getStreamInfo.isActive ? (
               <a>
-                <VideoPlayer
+                <Player
                   playbackId={`${getStreamInfo.playbackId}`}
                   autoPlay={false}
-                  width={200}
                   loop
                   muted
                 />

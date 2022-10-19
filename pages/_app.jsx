@@ -1,7 +1,6 @@
 import '../styles/globals.css'
 import Layout from '../components/Layout';
-import { LivepeerConfig, createReactClient } from "@livepeer/react";
-import { studioProvider } from "livepeer/providers/studio";
+import { LivepeerConfig, createReactClient, studioProvider } from '@livepeer/react';
 
 
 
