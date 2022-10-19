@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import logo from '../../public/studioLogo.png';
-import { VideoPlayer } from '@livepeer/react';
+import { Player } from '@livepeer/react';
 import styles from '../../styles/Asset.module.css';
 
 // Calling the api from server side using 'getServerSideProps' and passing in existing
@@ -56,7 +56,7 @@ export default function AssetDetails({ assets, views }) {
         {/* Display embedded Video Player if it exists, otherwise show an image */}
         {assets.status.phase === 'ready' ? (
           <div>
-            <VideoPlayer
+            <Player
               playbackId={`${assets.playbackId}`}
               className={styles.videoplayer}
               autoPlay={true}

@@ -4,12 +4,12 @@ import styles from '../../styles/CreateAssetForm.module.css';
 
 export default function UpdateAsset() {
   const [assetId, setAssetId] = useState<string>('');
-  const [name, setName] = useState<string | undefined>();
+  const [name, setName] = useState<string>('');
   // const [storage, setStorage] = useState<string | undefined>(undefined);
-  const [meta, setMeta] = useState<string>();
+  const [meta, setMeta] = useState<string>('');
 
   const { data: getAsset } = useAsset({ assetId });
-  const { mutate: updateAsset, status } = useUpdateAsset();
+  const { mutate: updateAssetArgs, status } = useUpdateAsset();
 
   return (
     <div className={styles.main}>
@@ -52,7 +52,7 @@ export default function UpdateAsset() {
           <button
             disabled={status === 'loading' || status === 'success'}
             onClick={() => {
-              updateAsset({
+              updateAssetArgs({
                 assetId,
                 storage: { ipfs:true},
               });
@@ -80,10 +80,13 @@ export default function UpdateAsset() {
         <button
           disabled={status === 'loading'}
           onClick={() => {
-            updateAsset({
+            updateAssetArgs({
               assetId,
               name,
-              meta: meta ? JSON.parse(meta) : null,
+              // meta: meta ? JSON.parse(meta) : null,
+              // storage: {
+              //   metadata: meta ? JSON.parse( meta ): null
+              // }
             });
           }}
         >

@@ -32,10 +32,9 @@ export default function GetStream() {
           <Link href={`/streams/${stream?.id}`}>
             {stream?.isActive ? (
               <a>
-                <VideoPlayer
+                <Player
                   playbackId={`${stream?.playbackId}`}
                   autoPlay={false}
-                  width={200}
                   loop
                   muted
                 />
