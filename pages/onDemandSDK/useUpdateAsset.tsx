@@ -83,7 +83,7 @@ export default function UpdateAsset() {
             updateAsset({
               assetId,
               name,
-              meta: meta ? JSON.parse(meta) : null,
+              // meta: meta ? JSON.parse(meta) : null,
             });
           }}
         >

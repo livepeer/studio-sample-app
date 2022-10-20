@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from "../styles/Navbar.module.css";
-import logo from "../public/studioLogo.png"
+import styles from '../styles/Navbar.module.css';
+import logo from '../public/studioLogo.png';
 
 export default function Navbar() {
   return (
@@ -90,11 +90,11 @@ export default function Navbar() {
                   </a>
                 </Link>
 
-                {/* <Link className={styles.active} href="/mint">
-                    <a className="text-gray-200 hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-md font-medium">
-                      🖼 Mint NFT
-                    </a>
-                  </Link> */}
+                <Link className={styles.active} href='/mintNFT'>
+                  <a className='text-gray-200 hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-md font-medium'>
+                    🖼 Mint NFT
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -136,11 +136,11 @@ export default function Navbar() {
             </a>
           </Link>
 
-          {/* <Link className={styles.active} href="/mint">
-              <a className="bg-blue-800 text-white block px-3 py-2 rounded-md text-base font-medium">
-                🖼 Mint NFT
-              </a>
-            </Link> */}
+          <Link className={styles.active} href='/mint'>
+            <a className='bg-blue-800 text-white block px-3 py-2 rounded-md text-base font-medium'>
+              🖼 Mint NFT
+            </a>
+          </Link>
         </div>
       </div>
     </nav>

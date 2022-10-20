@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { VideoPlayer } from '@livepeer/react';
+import { Player } from '@livepeer/react';
 import styles from '../styles/VideoPlayer.module.css';
 
-export default function Player() {
+export default function VideoPlayer() {
   // Set the state to get either the playback URL or playback ID
   const [playbackSource, setPlaybackSource] = useState<string>('');
 
@@ -23,19 +23,15 @@ export default function Player() {
       />
 
       {playbackSource.includes(playbackurl) ? (
-        <VideoPlayer
+        <Player
           src={playbackSource}
-          className={styles.card}
-          width={800}
           autoPlay={true}
           loop
           muted
         />
       ) : (
-        <VideoPlayer
+        <Player
           playbackId={playbackSource}
-          className={styles.card}
-          width={800}
           autoPlay={true}
           loop
           muted
