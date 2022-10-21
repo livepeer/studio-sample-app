@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { VideoPlayer, useAssetMetrics } from '@livepeer/react';
+import { Player, useAssetMetrics } from '@livepeer/react';
 import styles from '../../styles/VideoPlayer.module.css';
 
 
@@ -25,10 +25,8 @@ export default function AssetMetrics() {
       <p className={styles.ready}>{metrics?.metrics[0].startViews}</p>
       <br />
 
-      <VideoPlayer
+      <Player
         playbackId={playbackId}
-        className={styles.card}
-        width={800}
         autoPlay={true}
         loop
         muted
