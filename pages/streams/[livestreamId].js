@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import logo from '../../public/studioLogo.png';
-import { VideoPlayer } from '@livepeer/react';
+import { Player } from '@livepeer/react';
 import styles from '../../styles/Stream.module.css';
 
 
@@ -35,7 +35,7 @@ export default function StreamDetails( { stream } ) {
         {stream.isActive ? (
           <div>
             <h2 className={styles.title}> Now Watching: {stream.name} </h2>
-            <VideoPlayer
+            <Player
               playbackId={`${stream.playbackId}`}
               className={styles.videoplayer}
               autoPlay={true}

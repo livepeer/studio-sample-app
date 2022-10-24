@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useStream, VideoPlayer } from '@livepeer/react'
+import { useStream, Player } from '@livepeer/react'
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../styles/Assets.module.css';
@@ -32,10 +32,9 @@ export default function GetStream() {
           <Link href={`/streams/${stream?.id}`}>
             {stream?.isActive ? (
               <a>
-                <VideoPlayer
+                <Player
                   playbackId={`${stream?.playbackId}`}
                   autoPlay={false}
-                  width={200}
                   loop
                   muted
                 />
